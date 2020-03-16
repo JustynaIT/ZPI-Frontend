@@ -5,15 +5,24 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { TasksIndexComponent } from './components/tasks/tasks-index/tasks-index.component';
 import { TasksCreateComponent } from './components/tasks/tasks-create/tasks-create.component';
 import { TasksEditComponent } from './components/tasks/tasks-edit/tasks-edit.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
     { path: '', component: SignInComponent },
-    { path: 'main', component: MainComponent,
-        children: [
-            { path: 'tasks/index', component: TasksIndexComponent },
-            { path: 'tasks/create', component: TasksCreateComponent },
-            { path: 'tasks/edit/:id', component: TasksEditComponent }
+    { path: 'auth', component: MainComponent, canActivate: [AuthGuard],
+        children: [{
+                path: 'tasks', component: TasksIndexComponent, pathMatch: 'full',
+                children: [
+                    { path: '', component: TasksIndexComponent, pathMatch: 'full' },
+                    { path: 'create', component: TasksCreateComponent },
+                    { path: 'edit/:id', component: TasksEditComponent }
+                ]
+            },
         ],
+       /*  {
+            path: "**",
+            component: PageNotFoundComponent
+        } */
     },
 
 ];

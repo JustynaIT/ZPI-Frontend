@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TasksIndexComponent } from './tasks-index.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('TasksIndexComponent', () => {
   let component: TasksIndexComponent;
@@ -8,7 +9,10 @@ describe('TasksIndexComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TasksIndexComponent ]
+      declarations: [ TasksIndexComponent ],
+      schemas: [
+        CUSTOM_ELEMENTS_SCHEMA
+      ],
     })
     .compileComponents();
   }));

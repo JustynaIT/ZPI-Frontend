@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SignInComponent } from './sign-in.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AuthService } from 'src/app/services/auth.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
@@ -27,6 +27,7 @@ describe('SignInComponent', () => {
         FormsModule,
         RouterTestingModule,
         HttpClientTestingModule,
+        ReactiveFormsModule,
         BrowserAnimationsModule],
       providers: [
         AuthService,
@@ -49,9 +50,9 @@ describe('SignInComponent', () => {
   it(`should navigate to tasks index`, () => {
     const navigateSpy = spyOn(router, 'navigate');
 
-    component.navigate(['/main/tasks/index']);
+    component.navigate(['/auth/tasks']);
 
-    expect(navigateSpy).toHaveBeenCalledWith(['/main/tasks/index']);
+    expect(navigateSpy).toHaveBeenCalledWith(['/auth/tasks']);
   });
 
 

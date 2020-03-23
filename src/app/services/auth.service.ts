@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { Observable, ObservableInput, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,16 +13,33 @@ export class AuthService {
   }
 
   public isAuthenticated(): boolean {
-    const token = localStorage.getItem('access_token');
+    const token = this.getToken();
     if (token) {
       return true;
     }
     return false;
   }
 
+  public getToken(): string {
+    return localStorage.getItem('access_token');
+  }
+
   public signIn(user: any) {
     return this.http.post(environment.api + '/login', user);
   }
+
+  public addUser(newUser: any) {
+    return this.http.post(environment.api + '/register', newUser)
+      .pipe(catchError(this.handleError));
+  }
+
+  handleError(error): ObservableInput<any> {
+    if (error.code === 500) {
+      //this.router.navigate(['/login']);
+    } else {
+      return throwError(error)
+    }
+}
 
 
 }

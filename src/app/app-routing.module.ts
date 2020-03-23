@@ -6,6 +6,7 @@ import { TasksIndexComponent } from './components/tasks/tasks-index/tasks-index.
 import { TasksCreateComponent } from './components/tasks/tasks-create/tasks-create.component';
 import { TasksEditComponent } from './components/tasks/tasks-edit/tasks-edit.component';
 import { AuthGuard } from './guards/auth.guard';
+import { AddUserComponent } from './components/add-user/add-user.component';
 
 const routes: Routes = [
     { path: '', component: SignInComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
                     { path: 'edit/:id', component: TasksEditComponent }
                 ]
             },
+            { path: 'add-user', component: AddUserComponent }
         ],
        /*  {
             path: "**",

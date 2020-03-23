@@ -5,3 +5,12 @@
     margin: 0 20px;
     cursor: pointer;
 }
+.toolbar {
+  background-color: #00c853;
+  color:white;
+  font-size: 18px;
+}
+.button-log-out {
+  background-color: #303030;
+  color:white;
+}

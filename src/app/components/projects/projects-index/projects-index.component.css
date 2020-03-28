@@ -1,0 +1,77 @@
+
+.title {
+    color: #FFBF29;
+    text-align: center;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding-top: 20px;
+}
+.content {
+    margin: 15px 270px;
+    cursor: pointer;
+}
+    
+
+@media only screen and (max-width: 600px) {
+    .content {
+      margin: 20px 70px;
+    }
+  }
+  @media only screen and (max-width: 1000px) {
+    .content {
+      margin: 20px 100px;
+    }
+  }
+@media only screen and (max-width: 400px) {
+    .content {
+      margin: 20px 20px;
+    }
+}
+
+.font {
+    font-size: 12px;;
+}
+
+.card {
+    margin: 16px 0;
+}
+.name {
+    color: #FFBF29;
+}
+
+.buttonAdd {
+    background-color: #FFBF29;
+    color: white;
+}
+.iconEdit {
+    font-size: 17px;
+    padding-left: 10px;
+    cursor: pointer;
+}
+.iconEdit:hover {
+    color: rgb(255, 219, 133);
+}
+
+.icon:hover {
+    color: rgb(248, 234, 200);
+}
+
+.iconDelete {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: #827d7d;
+}
+
+.iconDelete:hover {
+    color: rgb(255, 219, 133);
+    cursor: pointer;
+}
+
+::ng-deep .color-snackbar {
+    background: #FFBF29 !important;
+    color: white;
+    position: absolute !important;
+    top: 54px;
+    right: 20px;
+}

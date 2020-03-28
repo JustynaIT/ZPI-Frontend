@@ -1,0 +1,50 @@
+<div class="container">
+
+    <h2 class="title">
+        Projects
+    </h2>
+
+    <button routerLink="/auth/projects/create" mat-button class="buttonAdd ">
+        <mat-icon>add</mat-icon>
+        Add project
+    </button>
+    <div class="row">
+        <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let project of projects">
+            <mat-card class="card">
+                <mat-card-title>
+                    <span class="name">{{project.name}}</span>
+                    <mat-icon class="iconEdit" [routerLink]="['/auth/projects/edit/', project.id]">edit</mat-icon>
+                    <mat-icon class="iconDelete"(click)="openDialog(project.id)" >close</mat-icon>
+                </mat-card-title>
+                <mat-card-content>
+                    <p> Client: {{project.client }} Jan Kowalski</p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <div class="row">
+                        <div class="col-6 col-md-6 icon text-center" 
+                        matTooltipPosition='above' 
+                        matTooltipShowDelay='1000'
+                        matTooltip="Budget">
+                            <div>
+                                <mat-icon>work</mat-icon>
+                            </div>
+                            <div>{{project.budget}}</div>
+                        </div>
+                        <div class="col-6 col-md-6 icon text-center" 
+                        matTooltipPosition='above' 
+                        matTooltipShowDelay='1000'
+                        matTooltip="Tasks cost">
+                            <div>
+                                <mat-icon>monetization_on</mat-icon>
+                            </div>
+                            <div>
+                                {{project.tasks_cost}}
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+
+</div>

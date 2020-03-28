@@ -1,0 +1,41 @@
+.title {
+    color: #FFBF29;
+    text-align: center;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+
+.container {
+    padding: 30px 70px;
+  }
+  
+  .card {
+    padding: 20px;
+  }
+
+   /* Change label color on focused */
+   ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+    color: #FFBF29 !important;
+  }
+  
+  /* underline border color on focused */
+  ::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple{
+    background-color: #FFBF29 !important;
+  }
+
+  ::ng-deep .mat-input-element {
+    caret-color: #FFBF29 !important;
+  }
+
+ 
+.mat-button, .mat-raised-button{
+    background-color:#FFBF29;
+} 
+::ng-deep .color-snackbar {
+    background: #FFBF29 !important;
+    color: white;
+    position: absolute !important;
+    top: 54px;
+    right: 20px;
+}

@@ -14,7 +14,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material/input';
 import {
   MatButtonModule, MatCardModule, MatDialogModule, MatTableModule,
-  MatToolbarModule, MatListModule, MatMenuModule, MatIconModule, MatProgressSpinnerModule, DateAdapter, MatNativeDateModule
+  MatToolbarModule, MatListModule, MatMenuModule,
+  MatIconModule, MatProgressSpinnerModule, DateAdapter,
+  MatNativeDateModule, MatGridListModule, MatTooltipModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -25,14 +27,12 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
-import * as _moment from 'moment' ;
-/* 
-class MomentDateAdapter extends DateAdapter<Moment> {
-  parse(value: any, parseFormat: any): Moment {
-      return moment(value, parseFormat);
-  } */
-
-  // Implementation for remaining abstract methods of DateAdapter.
+import * as _moment from 'moment';
+import { ProjectsIndexComponent } from './components/projects/projects-index/projects-index.component';
+import { ProjectsCreateComponent } from './components/projects/projects-create/projects-create.component' ;
+import { ProjectsService } from './services/projects.service';
+import { ProjectsEditComponent } from './components/projects/projects-edit/projects-edit.component';
+import { RemoveDialogComponent } from './dialogs/remove-dialog/remove-dialog.component';
 
 const MY_FORMATS = {
     parse: {
@@ -55,7 +55,11 @@ const MY_FORMATS = {
     TasksIndexComponent,
     TasksCreateComponent,
     TasksEditComponent,
-    AddUserComponent
+    AddUserComponent,
+    ProjectsIndexComponent,
+    ProjectsCreateComponent,
+    ProjectsEditComponent,
+    RemoveDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -74,11 +78,18 @@ const MY_FORMATS = {
     MatSnackBarModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatIconModule,
+    MatGridListModule,
+    MatTooltipModule,
+    MatDialogModule
   ],
-  providers: [
-    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
-    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+  entryComponents: [
+    RemoveDialogComponent
+  ],
+  providers: [ ProjectsService,
+    { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })

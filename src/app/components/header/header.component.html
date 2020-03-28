@@ -2,9 +2,10 @@
     <mat-toolbar-row>
         <span>MY APP</span>
         <span class="example-spacer"></span>
-        <span  routerLink="" class="item">Projects</span>
+        <span *ngIf="authS.role() === 'ADMIN'"  routerLink="/auth/projects" class="item">Projects</span>
+        <span *ngIf="authS.role() !== 'ADMIN'"  routerLink="" class="item">Project</span>
         <span  routerLink="" class="item">Tasks</span>
         <span  routerLink="/auth/add-user" class="item">Add User</span>
-        <button mat-raised-button class="button-log-out" (click)="logOut()">Log out</button>
+        <button mat-raised-button class="button-log-out" (click)="logOut()"> Log out</button>
     </mat-toolbar-row>
 </mat-toolbar>

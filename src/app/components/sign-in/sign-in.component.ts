@@ -31,7 +31,11 @@ export class SignInComponent implements OnInit {
     if (!this.LoginForm.invalid) {
       this.authService.signIn(this.LoginForm.value).subscribe((res: any) => {
         localStorage.setItem('access_token', res.access_token);
-        this.navigate(['/auth/tasks']);
+
+        this.authService.getUser().subscribe((resUser: any) => {
+          localStorage.setItem('roles', resUser.data.item.roles[0].name);
+          this.navigate(['/auth/tasks']);
+        });
       });
     }
   }

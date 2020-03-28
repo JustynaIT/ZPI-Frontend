@@ -7,16 +7,26 @@ import { TasksCreateComponent } from './components/tasks/tasks-create/tasks-crea
 import { TasksEditComponent } from './components/tasks/tasks-edit/tasks-edit.component';
 import { AuthGuard } from './guards/auth.guard';
 import { AddUserComponent } from './components/add-user/add-user.component';
+import { ProjectsIndexComponent } from './components/projects/projects-index/projects-index.component';
+import { ProjectsCreateComponent } from './components/projects/projects-create/projects-create.component';
+import { ProjectsEditComponent } from './components/projects/projects-edit/projects-edit.component';
 
 const routes: Routes = [
     { path: '', component: SignInComponent },
     { path: 'auth', component: MainComponent, canActivate: [AuthGuard],
         children: [{
-                path: 'tasks', component: TasksIndexComponent, pathMatch: 'full',
+                path: '',
                 children: [
-                    { path: '', component: TasksIndexComponent, pathMatch: 'full' },
-                    { path: 'create', component: TasksCreateComponent },
-                    { path: 'edit/:id', component: TasksEditComponent }
+                    { path: 'tasks', component: TasksIndexComponent,  },
+                    { path: 'tasks/create', component: TasksCreateComponent },
+                    { path: 'tasks/edit/:id', component: TasksEditComponent }
+                ]
+            }, {
+                path: '',
+                children: [
+                    { path: 'projects', component: ProjectsIndexComponent, pathMatch: 'full' },
+                    { path: 'projects/create', component: ProjectsCreateComponent },
+                    { path: 'projects/edit/:id', component: ProjectsEditComponent },
                 ]
             },
             { path: 'add-user', component: AddUserComponent }

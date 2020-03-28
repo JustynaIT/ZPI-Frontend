@@ -20,12 +20,21 @@ export class AuthService {
     return false;
   }
 
+  role() {
+    return localStorage.getItem('roles');
+  }
+
+
   public getToken(): string {
     return localStorage.getItem('access_token');
   }
 
   public signIn(user: any) {
     return this.http.post(environment.api + '/login', user);
+  }
+
+  public getUser() {
+    return this.http.get(environment.api + '/user');
   }
 
   public addUser(newUser: any) {

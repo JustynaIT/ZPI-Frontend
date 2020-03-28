@@ -14,46 +14,46 @@
   }
   
   .mat-button, .mat-raised-button{
-    background-color:#00c853;
+    background-color:#FFBF29;
 } 
 
 
   
   /* Change label color on focused */
   ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
-    color: #00c853 !important;
+    color: #FFBF29 !important;
   }
   
   /* underline border color on focused */
   ::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple{
-    background-color: #00c853 !important;
+    background-color: #FFBF29 !important;
   }
 
   ::ng-deep .mat-input-element {
-    caret-color: #00c853 !important;
+    caret-color: #FFBF29 !important;
   }
 
  
 
 ::ng-deep .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
-    color: #00c853 !important;
+    color: #FFBF29 !important;
 }
 
 ::ng-deep .mat-form-field.mat-focused.mat-primary .mat-select-arrow {
-    color:#00c853 !important;
+    color:#FFBF29 !important;
 }
 
 ::ng-deep .mat-calendar-body-selected  {
-    background-color: #00c853 !important;
+    background-color: #FFBF29 !important;
 }
 
 ::ng-deep .mat-datepicker-toggle-active {
-    color: #00c853 !important;
+    color: #FFBF29 !important;
 }
 
 
 ::ng-deep .color-snackbar {
-    background: #00c853 !important;
+    background: #FFBF29 !important;
     color: white;
     position: absolute !important;
     top: 54px;

@@ -33,6 +33,7 @@ import { ProjectsCreateComponent } from './components/projects/projects-create/p
 import { ProjectsService } from './services/projects.service';
 import { ProjectsEditComponent } from './components/projects/projects-edit/projects-edit.component';
 import { RemoveDialogComponent } from './dialogs/remove-dialog/remove-dialog.component';
+import { ProjectsShowComponent } from './components/projects/projects-show/projects-show.component';
 
 const MY_FORMATS = {
     parse: {
@@ -59,7 +60,8 @@ const MY_FORMATS = {
     ProjectsIndexComponent,
     ProjectsCreateComponent,
     ProjectsEditComponent,
-    RemoveDialogComponent
+    RemoveDialogComponent,
+    ProjectsShowComponent
   ],
   imports: [
     BrowserModule,

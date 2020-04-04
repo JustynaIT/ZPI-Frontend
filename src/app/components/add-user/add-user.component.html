@@ -39,6 +39,7 @@
                 <mat-form-field class="col-md-6">
                     <mat-label>Phone</mat-label>
                     <input matInput placeholder="Phone" formControlName="phone" name="phone">
+                    <mat-error *ngIf="phone.invalid">{{getErrorMessage('phone')}}</mat-error>
                 </mat-form-field>
                 <mat-form-field class="col-md-6">
                     <mat-label>Birth date</mat-label>

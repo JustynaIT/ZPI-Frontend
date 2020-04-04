@@ -1,0 +1,79 @@
+<div class="container">
+
+    <h2 class="title">
+        {{project?.name}}
+        <mat-icon *ngIf="authS.role() !== 'WORKER'"  class="iconEdit" [routerLink]="['/auth/projects/edit/', project?.id]">edit</mat-icon>
+
+    </h2>
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="row">
+                <div class="col-6 col-md-12">
+                    <mat-card class="card text-center">
+               
+                        <mat-card-title>
+                            <mat-icon class="icon ">work</mat-icon>
+                        </mat-card-title>
+                        <mat-card-content>
+                            <p class="text-icon"> {{project?.budget }}</p>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                <div class="col-6 col-md-12">
+                    <mat-card class="card text-center">
+                        <mat-card-title>
+                            <mat-icon class="icon">monetization_on</mat-icon>
+                        </mat-card-title>
+                        <mat-card-content>
+                            <p class="text-icon">{{project?.tasks_cost }}</p>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </div>
+            
+            
+        </div>
+        <div class="col-md-9">
+            <mat-card class="card">
+                <mat-card-content>
+                    <p><strong>Client:</strong>  {{project?.client }} Jan Kowalski</p>
+                    <p> <strong>Lider:</strong> {{project?.client }} Jan Kowalski</p>
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <h2 class="subtitle">
+                Tasks
+            </h2>
+        </div>
+        <div class="col-md-9 tasks">
+            <div class="row text-center">
+                <div class="col-6 col-sm-3">
+                    <mat-icon class="icon ">reorder</mat-icon>
+                    <span class="text-icon">{{project?.total_tasks}}</span>
+                </div>
+                <div class="col-6 col-sm-3">
+                    <mat-icon class="icon ">done</mat-icon>
+                    <span>{{project?.done_tasks}}</span>
+                </div>
+                <div class="col-6 col-sm-3">
+                    <mat-icon class="icon ">update</mat-icon>
+                    <span>{{project?.in_progress_tasks}}</span>
+                </div>
+                <div class="col-6 col-sm-3">
+                    <mat-icon class="icon ">report</mat-icon>
+                    <span>{{project?.not_assigned_tasks}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   <br><br>
+    <p> this module will be added next week.</p>
+
+
+</div>

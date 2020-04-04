@@ -113,6 +113,9 @@ export class AddUserComponent implements OnInit {
   get role() {
     return this.AddUserForm.get('role');
   }
+  get phone() {
+    return this.AddUserForm.get('phone');
+  }
 }
 
 

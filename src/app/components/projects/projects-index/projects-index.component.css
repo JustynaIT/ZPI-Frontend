@@ -37,6 +37,7 @@
 }
 .name {
     color: #FFBF29;
+    cursor: pointer;
 }
 
 .buttonAdd {

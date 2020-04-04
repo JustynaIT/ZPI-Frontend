@@ -10,26 +10,80 @@ import { AddUserComponent } from './components/add-user/add-user.component';
 import { ProjectsIndexComponent } from './components/projects/projects-index/projects-index.component';
 import { ProjectsCreateComponent } from './components/projects/projects-create/projects-create.component';
 import { ProjectsEditComponent } from './components/projects/projects-edit/projects-edit.component';
+import { ProjectsShowComponent } from './components/projects/projects-show/projects-show.component';
+
+const roles = {
+    A: ['ADMIN'],
+    ALC: ['ADMIN', 'LEADER', 'CLIENT'],
+    ALL: ['ADMIN', 'CLIENT', 'LEADER', 'WORKER']
+};
 
 const routes: Routes = [
     { path: '', component: SignInComponent },
-    { path: 'auth', component: MainComponent, canActivate: [AuthGuard],
+    { path: 'auth', component: MainComponent,
         children: [{
-                path: '',
+                path: 'tasks',
                 children: [
-                    { path: 'tasks', component: TasksIndexComponent,  },
-                    { path: 'tasks/create', component: TasksCreateComponent },
-                    { path: 'tasks/edit/:id', component: TasksEditComponent }
+                    {
+                        path: '',
+                        component: TasksIndexComponent,
+                        canActivate: [AuthGuard],
+                        data: { roles: roles.ALL }
+                    },
+                    {
+                        path: 'create',
+                        component: TasksCreateComponent,
+                        canActivate: [AuthGuard],
+                        data: { roles: roles.ALL }
+                    },
+                    {
+                        path: 'edit/:id',
+                        component: TasksEditComponent,
+                        canActivate: [AuthGuard],
+                        data: { roles: roles.ALL }
+                    }
                 ]
             }, {
-                path: '',
-                children: [
-                    { path: 'projects', component: ProjectsIndexComponent, pathMatch: 'full' },
-                    { path: 'projects/create', component: ProjectsCreateComponent },
-                    { path: 'projects/edit/:id', component: ProjectsEditComponent },
+                path: 'projects',
+                children: [{
+                        path: '',
+                        component: ProjectsIndexComponent,
+                        pathMatch: 'full',
+                        canActivate: [AuthGuard],
+                        data: { roles: roles.A }
+                    },
+                    {
+                        path: 'create',
+                        component: ProjectsCreateComponent,
+                        canActivate: [AuthGuard],
+                        data: { roles: roles.A }
+                    },
+                    {
+                        path: 'edit/:id',
+                        component: ProjectsEditComponent,
+                        canActivate: [AuthGuard],
+                        data: { roles: roles.ALC },
+                     },
+                    {
+                        path: 'show/:id',
+                        component: ProjectsShowComponent,
+                        canActivate: [AuthGuard],
+                        data: { roles: roles.A }
+                    },
+                    {
+                        path: 'show',
+                        component: ProjectsShowComponent,
+                        canActivate: [AuthGuard],
+                        data: { roles: roles.ALL }
+                    },
                 ]
             },
-            { path: 'add-user', component: AddUserComponent }
+            {
+                path: 'add-user',
+                component: AddUserComponent,
+                canActivate: [AuthGuard],
+                data: { roles: roles.A }
+            }
         ],
        /*  {
             path: "**",

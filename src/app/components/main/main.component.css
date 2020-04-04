@@ -1,0 +1,8 @@
+
+::ng-deep .color-snackbar-error {
+    background: #ff5129 !important;
+    color: white;
+    position: absolute !important;
+    top: 54px;
+    right: 20px;
+}

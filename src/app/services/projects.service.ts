@@ -11,29 +11,36 @@ export class ProjectsService {
 
   constructor(private http: HttpClient) { }
 
-  getAll() {
+  public getAll() {
     return this.http.get(environment.api + '/projects')
     .pipe(
       map((res: any) =>  res.data)
       );
   }
 
-  get(id: number) {
+  public getProjectCurrentUser() {
+    return this.http.get(environment.api + `/user/project`)
+    .pipe(
+      map((res: any) => res.data)
+    );
+  }
+
+  public get(id: number) {
     return this.http.get(environment.api + `/projects/${id}`)
     .pipe(
       map((res: any) => res.data)
     );
   }
 
-  create(project: any) {
+  public create(project: any) {
     return this.http.post(environment.api + '/projects', project);
   }
 
-  edit(id: number, project: any) {
+  public edit(id: number, project: any) {
     return this.http.patch(environment.api + `/projects/${id}`, project);
   }
 
-  delete(id: number) {
+  public delete(id: number) {
     return this.http.delete(environment.api + `/projects/${id}`);
   }
   // 409 add error info

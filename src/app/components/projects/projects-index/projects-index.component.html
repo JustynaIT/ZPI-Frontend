@@ -17,7 +17,7 @@
                     <mat-icon class="iconDelete"(click)="openDialog(project.id)" >close</mat-icon>
                 </mat-card-title>
                 <mat-card-content>
-                    <p> Client: {{project.client }} Jan Kowalski</p>
+                    <p> Client: {{project?.client?.name }}</p>
                 </mat-card-content>
                 <mat-card-actions>
                     <div class="row">

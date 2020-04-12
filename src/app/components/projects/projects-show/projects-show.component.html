@@ -37,8 +37,8 @@
         <div class="col-md-9">
             <mat-card class="card">
                 <mat-card-content>
-                    <p><strong>Client:</strong>  {{project?.client }} Jan Kowalski</p>
-                    <p> <strong>Lider:</strong> {{project?.client }} Jan Kowalski</p>
+                    <p><strong>Client:</strong>  {{project?.client?.name}}</p>
+                    <p> <strong>Lider:</strong> Jan Kowalski</p>
                 </mat-card-content>
             </mat-card>
         </div>
@@ -70,6 +70,86 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-12" *ngFor="let task of tasks">
+            <mat-card class="card">
+                <mat-card-content>
+                    <div>
+                        <span 
+                            class="icon-edit-task"
+                            *ngIf="!isEditEnable" >
+                            <mat-icon                                 
+                                (click)="enableEditing(task.id)">
+                                edit
+                            </mat-icon>
+                            <mat-icon 
+                                (click)="deleteTask(task.id)">
+                                 delete
+                            </mat-icon>
+                        </span>
+                        <span class="icon-edit-task"                        
+                              *ngIf="task.isEdit"  >
+                            <mat-icon 
+                                (click)="saveTask(task.id)">
+                                done
+                            </mat-icon>
+                            <mat-icon 
+                                (click)="cancelEditTask(task.id)">
+                                close
+                            </mat-icon>
+                        </span>                        
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2 text-center">
+                            <mat-icon class="icon " [ngStyle]="{'color': setColor(task.priority, task.status)}">{{setIcon(task.status)}}</mat-icon>
+                        </div>
+                        <div class="col-md-10">
+                            <div *ngIf="!task.isEdit">                                
+                                <p class="name" [ngStyle]="{'color': setColor(task.priority, task.status)}">{{task.name}}</p>
+                                <p >{{task?.user?.name}}</p>
+                                <p>{{task?.description}}</p>
+                                <p class="date">{{task.expire_date}}</p>
+                            </div>
+                            <div *ngIf="task.isEdit" class="edit-form">
+                                <form [formGroup]="editTaskForm" class="example-form row">
+                                    <mat-form-field class="col-md-6">
+                                        <mat-label>Name</mat-label>
+                                        <input matInput placeholder="Name" formControlName="name" name="name" required>
+                                    </mat-form-field>
+                                    <mat-form-field class="col-md-6">
+                                        <mat-label>Employee</mat-label>
+                                        <mat-select formControlName="user_id">
+                                            <mat-option *ngFor="let user of usersProject" [value]="user.id">{{user.name}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                    <mat-form-field class="col-md-6">
+                                        <mat-label>Priority</mat-label>
+                                        <mat-select formControlName="priority" required>
+                                            <mat-option *ngFor="let priority of prioritys" [value]="priority.value">{{priority.label}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                    <mat-form-field class="col-md-6">
+                                        <mat-label>Status</mat-label>
+                                        <mat-select formControlName="status">
+                                            <mat-option *ngFor="let status of statuses" [value]="status.value">{{status.label}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                    <mat-form-field class="col-md-6">
+                                        <mat-label>Hours spent</mat-label>
+                                        <input matInput placeholder="Hours spent" formControlName="hours_spent" name="hours_spent">
+                                    </mat-form-field>
+                                    <mat-form-field class="col-md-12">
+                                        <mat-label>Description</mat-label>
+                                        <input matInput placeholder="description" formControlName="description" name="description">
+                                    </mat-form-field>                                    
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </mat-card-content>
+            </mat-card>
+        </div>
+        
     </div>
 
    <br><br>

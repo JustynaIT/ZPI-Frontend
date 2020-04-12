@@ -60,3 +60,57 @@
     right: 12px;
     bottom: -20px;
 }
+
+.add-task {    
+    cursor: pointer;
+    font-size: 11px;
+    color: white;
+}
+.add-task mat-icon {
+    font-size:30px;
+}
+
+.add-task:hover {
+    color: #f3cd74;
+}
+
+  /* Change label color on focused */
+  ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+    color: #FFBF29 !important;
+  }
+  
+  /* underline border color on focused */
+  ::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple{
+    background-color: #FFBF29 !important;
+  }
+
+  ::ng-deep .mat-input-element {
+    caret-color: #FFBF29 !important;
+  }
+
+ 
+
+::ng-deep .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+    color: #FFBF29 !important;
+}
+
+::ng-deep .mat-form-field.mat-focused.mat-primary .mat-select-arrow {
+    color:#FFBF29 !important;
+}
+
+::ng-deep .mat-calendar-body-selected  {
+    background-color: #FFBF29 !important;
+}
+
+::ng-deep .mat-datepicker-toggle-active {
+    color: #FFBF29 !important;
+}
+
+
+::ng-deep .color-snackbar {
+    background: #FFBF29 !important;
+    color: white;
+    position: absolute !important;
+    top: 54px;
+    right: 20px;
+}

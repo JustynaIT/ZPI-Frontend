@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { TasksService } from 'src/app/services/tasks.service';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatSnackBar, MatDialog } from '@angular/material';
+import { RemoveDialogComponent } from 'src/app/dialogs/remove-dialog/remove-dialog.component';
 
 @Component({
   selector: 'app-projects-show',
@@ -17,6 +19,7 @@ export class ProjectsShowComponent implements OnInit {
   public usersProject;
   public idProject;
   public isEditEnable = false;
+  public isAddEnable = false;
   public editTaskForm: FormGroup;
   public indexEditTask: number;
   public prioritys = [
@@ -35,6 +38,8 @@ export class ProjectsShowComponent implements OnInit {
               private tasksS: TasksService,
               private route: ActivatedRoute,
               private authS: AuthService,
+              private snackBar: MatSnackBar,
+              public dialog: MatDialog,
               private formBuilder: FormBuilder) {
     this.editTaskForm = this.formBuilder.group({
       name: new FormControl('', [Validators.required]),
@@ -43,6 +48,7 @@ export class ProjectsShowComponent implements OnInit {
       user_id: new FormControl(''),
       status: new FormControl(''),
       hours_spent: new FormControl(''),
+      expire_date: new FormControl('', [Validators.required]),
     });
   }
 
@@ -112,11 +118,25 @@ export class ProjectsShowComponent implements OnInit {
         this.tasks[this.indexEditTask].isEdit = false;
         this.isEditEnable = false;
         this.fetchTasks();
-        this.fetchProject();
+        this.fetchProject();        
+        this.tasks[this.indexEditTask].isEdit = false;
+        this.isEditEnable = false;
+        this.snackBar.open('task edited', 'close', {
+            duration: 2000,
+            panelClass: ['color-snackbar']
+          });
+      },
+      error: (error) => {
+        if (error.error.code === 422) {
+          if (error.error.errors) {
+            // tslint:disable-next-line: forin
+            for (let e in error.error.errors) {
+              this.editTaskForm.get(e).setErrors({ server: error.error.errors[e][0] });
+            }
+          }
+        }
       },
     });
-    this.tasks[this.indexEditTask].isEdit = false;
-    this.isEditEnable = false;
   }
 
   public cancelEditTask() {
@@ -126,6 +146,43 @@ export class ProjectsShowComponent implements OnInit {
 
   public deleteTask() {
 
+  }
+
+  public enableAdd() {
+    this.editTaskForm.reset();
+    this.removeValidators(this.editTaskForm);
+    this.isAddEnable = true;
+  }
+
+  public addTask() {
+    this.tasksS.create({project_id: this.idProject, ...this.editTaskForm.value}).subscribe({
+      next: () => {
+        this.fetchTasks();
+        this.fetchProject();
+        this.editTaskForm.reset();
+        this.removeValidators(this.editTaskForm);
+        this.isAddEnable = false;
+        this.snackBar.open('task added', 'close', {
+          duration: 2000,
+          panelClass: ['color-snackbar']
+        });
+      },
+      error: (error) => {
+        if (error.error.code === 422) {
+          if (error.error.errors) {
+            // tslint:disable-next-line: forin
+            for (let e in error.error.errors) {
+              this.editTaskForm.get(e).setErrors({ server: error.error.errors[e][0] });
+            }
+          }
+        }
+      }
+    });
+    
+  }
+
+  public cancelAddTask() {
+    this.isAddEnable = false;
   }
 
   public setIcon(status): string {
@@ -150,5 +207,42 @@ export class ProjectsShowComponent implements OnInit {
     } else {
       return '#f3cd74';
     }
+  }
+
+  public removeValidators(form: FormGroup) {
+    // tslint:disable-next-line: forin
+    for (const key in form.controls) {
+      form.get(key).clearValidators();
+      form.get(key).updateValueAndValidity();
+    }
+  }
+
+  getErrorMessage(key) {
+    if (this.editTaskForm.get(key).errors.required) {
+      return `Field ${key} is required`;
+    }
+    if (this.editTaskForm.get(key).errors.server) {
+      return this.editTaskForm.get(key).errors.server;
+    }
+  }
+
+
+  openDialog(id: number): void {
+    const dialogRef = this.dialog.open(RemoveDialogComponent, {
+      width: '250px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.tasksS.delete(id).subscribe(() => {
+          this.fetchTasks();
+          this.fetchProject();
+          this.snackBar.open('Task remove', 'close', {
+            duration: 2000,
+            panelClass: ['color-snackbar']
+          });
+        });
+      }
+    });
   }
 }

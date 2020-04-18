@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { TasksService } from 'src/app/services/tasks.service';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { MatSnackBar, MatDialog } from '@angular/material';
+import { MatSnackBar, MatDialog, PageEvent } from '@angular/material';
 import { RemoveDialogComponent } from 'src/app/dialogs/remove-dialog/remove-dialog.component';
 
 @Component({
@@ -33,6 +33,13 @@ export class ProjectsShowComponent implements OnInit {
     { value: 'in_progress', label: 'In progress' },
     { value: 'not_assigned', label: 'Not assigned' },
   ];
+  public paginator = {
+    length: 100,
+    pageSize: 5,
+    pageSizeOptions: [5],
+  };
+  // MatPaginator Output
+  pageEvent: PageEvent;
 
   constructor(private projectS: ProjectsService,
               private tasksS: TasksService,
@@ -76,27 +83,6 @@ export class ProjectsShowComponent implements OnInit {
     }
   }
 
-  private fetchTasks() {
-    if (this.idProject === null) {
-      this.tasksS.getTasksCurrentUser()
-        .subscribe((res) => {
-          this.tasks = res;
-          console.log(res);
-        });
-    } else {
-      this.tasksS.getProjectTasks(this.idProject)
-        .subscribe((res: any) => {
-          this.tasks = res.map(task => {
-            return {
-              isEdit: false,
-              ...task,
-            };
-          });
-          console.log(res);
-        });
-    }
-  }
-
   private fetchUsersProject() {
     this.projectS.getUsersProject(this.project.id).subscribe({
       next: (res) => {
@@ -118,7 +104,7 @@ export class ProjectsShowComponent implements OnInit {
         this.tasks[this.indexEditTask].isEdit = false;
         this.isEditEnable = false;
         this.fetchTasks();
-        this.fetchProject();        
+        this.fetchProject();
         this.tasks[this.indexEditTask].isEdit = false;
         this.isEditEnable = false;
         this.snackBar.open('task edited', 'close', {
@@ -130,7 +116,7 @@ export class ProjectsShowComponent implements OnInit {
         if (error.error.code === 422) {
           if (error.error.errors) {
             // tslint:disable-next-line: forin
-            for (let e in error.error.errors) {
+            for (const e in error.error.errors) {
               this.editTaskForm.get(e).setErrors({ server: error.error.errors[e][0] });
             }
           }
@@ -171,14 +157,13 @@ export class ProjectsShowComponent implements OnInit {
         if (error.error.code === 422) {
           if (error.error.errors) {
             // tslint:disable-next-line: forin
-            for (let e in error.error.errors) {
+            for (const e in error.error.errors) {
               this.editTaskForm.get(e).setErrors({ server: error.error.errors[e][0] });
             }
           }
         }
       }
     });
-    
   }
 
   public cancelAddTask() {
@@ -244,5 +229,43 @@ export class ProjectsShowComponent implements OnInit {
         });
       }
     });
+  }
+
+  setPageSizeOptions(setPageSizeOptionsInput: string) {
+    if (setPageSizeOptionsInput) {
+      this.paginator.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
+    }
+  }
+
+  handlePage(event) {
+    this.fetchTasks(event.pageIndex);
+  }
+
+
+  private fetchTasks(pageIndex?: number) {
+    if (!pageIndex) {
+      pageIndex = 0;
+    }
+
+    if (this.idProject === null) {
+      this.tasksS.getTasksCurrentUser(pageIndex + 1)
+        .subscribe((res: any) => {
+          this.paginator.length = res.meta.total;
+          this.tasks = res.data;
+          console.log(res);
+        });
+    } else {
+      this.tasksS.getProjectTasks(this.idProject, pageIndex + 1)
+        .subscribe((res: any) => {
+          this.tasks = res.data.map(task => {
+            this.paginator.length = res.meta.total;
+            return {
+              isEdit: false,
+              ...task,
+            };
+          });
+          console.log(res);
+        });
+    }
   }
 }

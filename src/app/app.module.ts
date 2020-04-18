@@ -16,7 +16,7 @@ import {
   MatButtonModule, MatCardModule, MatDialogModule, MatTableModule,
   MatToolbarModule, MatListModule, MatMenuModule,
   MatIconModule, MatProgressSpinnerModule, DateAdapter,
-  MatNativeDateModule, MatGridListModule, MatTooltipModule
+  MatNativeDateModule, MatGridListModule, MatTooltipModule, MatPaginatorModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -34,6 +34,7 @@ import { ProjectsService } from './services/projects.service';
 import { ProjectsEditComponent } from './components/projects/projects-edit/projects-edit.component';
 import { RemoveDialogComponent } from './dialogs/remove-dialog/remove-dialog.component';
 import { ProjectsShowComponent } from './components/projects/projects-show/projects-show.component';
+import { ProjectsRaportComponent } from './components/projects/projects-raport/projects-raport.component';
 
 const MY_FORMATS = {
     parse: {
@@ -61,7 +62,8 @@ const MY_FORMATS = {
     ProjectsCreateComponent,
     ProjectsEditComponent,
     RemoveDialogComponent,
-    ProjectsShowComponent
+    ProjectsShowComponent,
+    ProjectsRaportComponent
   ],
   imports: [
     BrowserModule,
@@ -84,7 +86,9 @@ const MY_FORMATS = {
     MatIconModule,
     MatGridListModule,
     MatTooltipModule,
-    MatDialogModule
+    MatDialogModule,
+    MatPaginatorModule,
+    MatTableModule,
   ],
   entryComponents: [
     RemoveDialogComponent

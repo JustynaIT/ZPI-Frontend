@@ -11,6 +11,7 @@ import { ProjectsIndexComponent } from './components/projects/projects-index/pro
 import { ProjectsCreateComponent } from './components/projects/projects-create/projects-create.component';
 import { ProjectsEditComponent } from './components/projects/projects-edit/projects-edit.component';
 import { ProjectsShowComponent } from './components/projects/projects-show/projects-show.component';
+import { ProjectsRaportComponent } from './components/projects/projects-raport/projects-raport.component';
 
 const roles = {
     A: ['ADMIN'],
@@ -68,14 +69,20 @@ const routes: Routes = [
                         path: 'show/:id',
                         component: ProjectsShowComponent,
                         canActivate: [AuthGuard],
-                        data: { roles: roles.A }
+                        data: { roles: roles.A },
                     },
                     {
                         path: 'show',
                         component: ProjectsShowComponent,
                         canActivate: [AuthGuard],
-                        data: { roles: roles.ALL }
+                        data: { roles: roles.ALL },
                     },
+                    {
+                        path: 'raport/:id',
+                        component: ProjectsRaportComponent,
+                        canActivate: [AuthGuard],
+                        data: { roles: roles.ALC },
+                    }
                 ]
             },
             {

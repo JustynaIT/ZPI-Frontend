@@ -39,6 +39,8 @@
                 <mat-card-content>
                     <p><strong>Client:</strong>  {{project?.client?.name}}</p>
                     <p> <strong>Lider:</strong> Jan Kowalski</p>
+                    <button mat-raised-button class="button-report" [routerLink]="['/auth/projects/raport/', project?.id]">Reports</button>
+
                 </mat-card-content>
             </mat-card>
         </div>
@@ -230,11 +232,17 @@
                 </mat-card-content>
             </mat-card>
         </div>
+
+        <div class=" col-md-12 d-flex flex-row-reverse ">
+            <mat-paginator 
+            class="paginator text-right"
+            [length]="paginator.length"
+            [pageSize]="paginator.pageSize"
+            [pageSizeOptions]="paginator.pageSizeOptions"
+            (page)="pageEvent = handlePage($event)">
+        </mat-paginator>
+        </div>
+        
         
     </div>
-
-   <br><br>
-    <p> this module will be added next week.</p>
-
-
 </div>

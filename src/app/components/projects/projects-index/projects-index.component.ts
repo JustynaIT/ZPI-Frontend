@@ -23,8 +23,6 @@ export class ProjectsIndexComponent implements OnInit {
   fetchData() {
     this.projectsS.getAll().subscribe((res: any) => {
       this.projects = res;
-      this.projects.push(...res);
-      console.log(res);
     });
   }
 

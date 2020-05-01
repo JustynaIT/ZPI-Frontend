@@ -1,0 +1,45 @@
+<div class="edit-form">
+    <form [formGroup]="taskForm" class="example-form row">
+        <mat-form-field class="col-md-6">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="Name" formControlName="name" name="name" required>
+            <mat-error *ngIf="this.taskForm.get('name').invalid">{{ validators.getErrorMessage('name')}}</mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-md-6">
+            <mat-label>Employee</mat-label>
+            <mat-select formControlName="user_id">
+                <mat-option *ngFor="let user of usersProject" [value]="user.id">{{user.name}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="this.taskForm.get('user_id').invalid">{{ validators.getErrorMessage('user_id')}}</mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-md-6">
+            <mat-label>Priority</mat-label>
+            <mat-select formControlName="priority" required>
+                <mat-option *ngFor="let priority of prioritys" [value]="priority.value">{{priority.label}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="this.taskForm.get('priority').invalid">{{ validators.getErrorMessage('priority')}}</mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-md-6">
+            <mat-label>Status</mat-label>
+            <mat-select formControlName="status" required>
+                <mat-option *ngFor="let status of statuses" [value]="status.value">{{status.label}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="this.taskForm.get('status').invalid">{{ validators.getErrorMessage('status')}}</mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-md-6">
+            <mat-label>Hours spent</mat-label>
+            <input matInput placeholder="Hours spent" formControlName="hours_spent" name="hours_spent">
+            <mat-error *ngIf="this.taskForm.get('hours_spent').invalid">{{ validators.getErrorMessage('hours_spent')}}</mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-md-6">
+            <mat-label> Expire date</mat-label>
+            <input matInput type="datetime-local" formControlName="expire_date" placeholder="Expire date" name="expire_date" required>
+            <mat-error *ngIf="this.taskForm.get('expire_date').invalid">{{ validators.getErrorMessage('expire_date')}}</mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-md-12">
+            <mat-label>Description</mat-label>
+            <input matInput placeholder="description" formControlName="description" name="description">
+            <mat-error *ngIf="this.taskForm.get('description').invalid">{{ validators.getErrorMessage('description')}}</mat-error>
+        </mat-form-field>                                    
+    </form>
+</div>

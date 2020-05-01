@@ -35,6 +35,9 @@ import { ProjectsEditComponent } from './components/projects/projects-edit/proje
 import { RemoveDialogComponent } from './dialogs/remove-dialog/remove-dialog.component';
 import { ProjectsShowComponent } from './components/projects/projects-show/projects-show.component';
 import { ProjectsRaportComponent } from './components/projects/projects-raport/projects-raport.component';
+import { ProjectsDetailComponent } from './components/projects/components/projects-detail/projects-detail.component';
+import { TasksComponent } from './components/projects/tasks/tasks/tasks.component';
+import { TaskFormComponent } from './components/projects/tasks/components/task-form/task-form.component';
 
 const MY_FORMATS = {
     parse: {
@@ -63,7 +66,10 @@ const MY_FORMATS = {
     ProjectsEditComponent,
     RemoveDialogComponent,
     ProjectsShowComponent,
-    ProjectsRaportComponent
+    ProjectsRaportComponent,
+    ProjectsDetailComponent,
+    TasksComponent,
+    TaskFormComponent
   ],
   imports: [
     BrowserModule,

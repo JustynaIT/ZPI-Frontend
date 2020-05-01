@@ -1,0 +1,128 @@
+<div class="row">
+    <div class="col-md-3">
+        <h2 class="subtitle">
+            Tasks
+            <span class="add-task" (click)="enableAdd()">
+                <mat-icon >add</mat-icon> 
+                add
+            </span>
+        </h2>
+    </div>
+    <div class="col-md-9 tasks">
+        <div class="row text-center">
+            <div class="col-6 col-sm-3">
+                <mat-icon class="icon ">reorder</mat-icon>
+                <span class="text-icon">{{project?.total_tasks}}</span>
+            </div>
+            <div class="col-6 col-sm-3">
+                <mat-icon class="icon ">done</mat-icon>
+                <span>{{project?.done_tasks}}</span>
+            </div>
+            <div class="col-6 col-sm-3">
+                <mat-icon class="icon ">update</mat-icon>
+                <span>{{project?.in_progress_tasks}}</span>
+            </div>
+            <div class="col-6 col-sm-3">
+                <mat-icon class="icon ">report</mat-icon>
+                <span>{{project?.not_assigned_tasks}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12" *ngIf="isAddEnable" >
+        <mat-card class="card">
+            <mat-card-content>
+                <div class="row">
+                    <span class="icon-edit-task"                        
+                          >
+                        <mat-icon 
+                            (click)="addTask()">
+                            done
+                        </mat-icon>
+                        <mat-icon 
+                            (click)="cancelAddTask()">
+                            close
+                        </mat-icon>
+                    </span>
+                    <div class="col-md-2 text-center">
+                        NEW
+                    </div>
+                    <div class="col-md-10">
+                        <app-task-form 
+                            [usersProject]="usersProject"
+                            [projectID]="project?.id">                            
+                        </app-task-form>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="col-md-12" *ngFor="let task of tasks">
+        <mat-card class="card">
+            <mat-card-content>
+                <div>
+                    <span 
+                        class="icon-edit-task"
+                        *ngIf="!isEditEnable && !isAddEnable" >
+                        <mat-icon                                 
+                            (click)="enableEditing(task.id)">
+                            edit
+                        </mat-icon>
+                        <mat-icon 
+                            (click)="openDialog(task.id)">
+                             delete
+                        </mat-icon>
+                    </span>
+                    <span class="icon-edit-task"                        
+                          *ngIf="task.isEdit"  >
+                        <mat-icon 
+                            (click)="saveTask(task.id)">
+                            done
+                        </mat-icon>
+                        <mat-icon 
+                            (click)="cancelEditTask(task.id)">
+                            close
+                        </mat-icon>
+                    </span>                        
+                </div>
+                <div class="row">
+                    <div class="col-md-2 text-center">
+                        <mat-icon class="icon " [ngStyle]="{'color': setColor(task.priority, task.status)}">{{setIcon(task.status)}}</mat-icon>
+                    </div>
+                    <div class="col-md-10">
+                        <div *ngIf="!task.isEdit">                                
+                            <p class="name" [ngStyle]="{'color': setColor(task.priority, task.status)}">{{task.name}}</p>
+                            <p >{{task?.user?.name}}</p>
+                            <p>{{task?.description}}</p>
+                            <p class="date">{{task.expire_date}}</p>
+                        </div>
+                        <div *ngIf="task.isEdit" class="edit-form">
+                            <app-task-form 
+                              [usersProject]="usersProject"
+                              [projectID]="project?.id">                            
+                            </app-task-form>
+                        </div>
+                    </div>
+                </div>
+                
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div *ngIf="tasks?.length === 0" class="no-tasks">
+        <p>
+            This project has no ticks. Add new tasks.
+        </p>   
+    </div>
+
+    <div *ngIf="tasks?.length > 0" class=" col-md-12 d-flex flex-row-reverse">
+        <mat-paginator 
+            class="paginator text-right"
+            [pageIndex]="paginator.pageIndex"
+            [length]="paginator.length"
+            [pageSize]="paginator.pageSize"
+            [pageSizeOptions]="paginator.pageSizeOptions"
+            (page)="pageEvent = handlePage($event)">
+        </mat-paginator>
+    </div>
+    
+    
+</div>

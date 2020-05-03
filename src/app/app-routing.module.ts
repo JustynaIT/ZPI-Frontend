@@ -6,12 +6,13 @@ import { TasksIndexComponent } from './components/tasks/tasks-index/tasks-index.
 import { TasksCreateComponent } from './components/tasks/tasks-create/tasks-create.component';
 import { TasksEditComponent } from './components/tasks/tasks-edit/tasks-edit.component';
 import { AuthGuard } from './guards/auth.guard';
-import { AddUserComponent } from './components/add-user/add-user.component';
+import { AddUserComponent } from './components/user/add-user/add-user.component';
 import { ProjectsIndexComponent } from './components/projects/projects-index/projects-index.component';
 import { ProjectsCreateComponent } from './components/projects/projects-create/projects-create.component';
 import { ProjectsEditComponent } from './components/projects/projects-edit/projects-edit.component';
 import { ProjectsShowComponent } from './components/projects/projects-show/projects-show.component';
 import { ProjectsRaportComponent } from './components/projects/projects-raport/projects-raport.component';
+import { UsersIndexComponent } from './components/user/users-index/users-index.component';
 
 const roles = {
     A: ['ADMIN'],
@@ -86,10 +87,19 @@ const routes: Routes = [
                 ]
             },
             {
-                path: 'add-user',
-                component: AddUserComponent,
-                canActivate: [AuthGuard],
-                data: { roles: roles.A }
+                path: 'users',
+                children: [{
+                    path: '',
+                    component: UsersIndexComponent,
+                    canActivate: [AuthGuard],
+                    data: { roles: roles.A }
+                },
+                {
+                    path: 'create',
+                    component: AddUserComponent,
+                    canActivate: [AuthGuard],
+                    data: { roles: roles.A }
+                }]
             }
         ],
        /*  {

@@ -20,7 +20,7 @@ import {
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AddUserComponent } from './components/add-user/add-user.component';
+import { AddUserComponent } from './components/user/add-user/add-user.component';
 import { TokenInterceptor } from './interceptor/http.interceptor';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatSelectModule} from '@angular/material/select';
@@ -38,6 +38,7 @@ import { ProjectsRaportComponent } from './components/projects/projects-raport/p
 import { ProjectsDetailComponent } from './components/projects/components/projects-detail/projects-detail.component';
 import { TasksComponent } from './components/projects/tasks/tasks/tasks.component';
 import { TaskFormComponent } from './components/projects/tasks/components/task-form/task-form.component';
+import { UsersIndexComponent } from './components/user/users-index/users-index.component';
 
 const MY_FORMATS = {
     parse: {
@@ -69,7 +70,8 @@ const MY_FORMATS = {
     ProjectsRaportComponent,
     ProjectsDetailComponent,
     TasksComponent,
-    TaskFormComponent
+    TaskFormComponent,
+    UsersIndexComponent
   ],
   imports: [
     BrowserModule,

@@ -47,6 +47,14 @@ export class AuthService {
     );
   }
 
+  public getUserAll(page?: number) {
+    return this.http.get(environment.api + `/users?page=${1}`)
+    //return this.http.get(environment.api + `/users`)
+    .pipe(
+      catchError(error => this.error(error))
+    );
+  }
+
   public addUser(newUser: any) {
     return this.http.post(environment.api + '/register', newUser)
       .pipe(

@@ -4,7 +4,8 @@
         <span class="example-spacer"></span>
         <span *ngIf="authS.role() === 'ADMIN'"  routerLink="/auth/projects" class="item">Projects</span>
         <span *ngIf="authS.role() !== 'ADMIN'"  routerLink="/auth/projects/show" class="item">Project</span>
-        <span *ngIf="authS.role() === 'ADMIN'" routerLink="/auth/add-user" class="item">Add User</span>
+        <span *ngIf="authS.role() === 'ADMIN'"  routerLink="/auth/users" class="item">Users</span>
+        <span *ngIf="authS.role() === 'ADMIN'" routerLink="/auth/users/create" class="item">Add User</span>
         <button mat-raised-button class="button-log-out" (click)="logOut()"> Log out</button>
     </mat-toolbar-row>
 </mat-toolbar>

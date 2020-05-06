@@ -1,0 +1,26 @@
+<div class="edit-form">
+    <form [formGroup]="userForm" class="example-form row">
+        <mat-form-field class="col-md-6">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="Name" formControlName="name" name="name" required>
+            <mat-error *ngIf="this.userForm.get('name').invalid">{{ validators.getErrorMessage('name')}}</mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-md-6">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Email" formControlName="email" name="email" required>
+            <mat-error *ngIf="this.userForm.get('email').invalid">{{ validators.getErrorMessage('email')}}</mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-md-6">
+            <mat-label>Project</mat-label>
+            <mat-select formControlName="project_id">
+                <mat-option *ngFor="let project of projects" [value]="project.id">{{project.name}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="this.userForm.get('project_id').invalid">{{ validators.getErrorMessage('project_id')}}</mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-md-6">
+            <mat-label>Hourly rate</mat-label>
+            <input matInput placeholder="Hourly rate" formControlName="hr_wage" name="hr_wage" required>
+            <mat-error *ngIf="this.userForm.get('hr_wage').invalid">{{ validators.getErrorMessage('hr_wage')}}</mat-error>
+        </mat-form-field>                           
+    </form>
+</div>

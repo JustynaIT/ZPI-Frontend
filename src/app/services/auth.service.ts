@@ -48,8 +48,7 @@ export class AuthService {
   }
 
   public getUserAll(page?: number) {
-    return this.http.get(environment.api + `/users?page=${1}`)
-    //return this.http.get(environment.api + `/users`)
+    return this.http.get(environment.api + `/users?page=${page}`)
     .pipe(
       catchError(error => this.error(error))
     );
@@ -57,6 +56,13 @@ export class AuthService {
 
   public addUser(newUser: any) {
     return this.http.post(environment.api + '/register', newUser)
+      .pipe(
+        catchError(error => this.error(error))
+      );
+  }
+
+  public updateUser(id: number, user: any) {
+    return this.http.patch(environment.api + `/users/${id}`, user)
       .pipe(
         catchError(error => this.error(error))
       );

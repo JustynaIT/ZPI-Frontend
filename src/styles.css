@@ -5,3 +5,43 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #303030;  }
 
+ /* Change label color on focused */
+ ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+    color: #FFBF29 !important;
+  }
+  
+  /* underline border color on focused */
+  ::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple{
+    background-color: #FFBF29 !important;
+  }
+
+  ::ng-deep .mat-input-element {
+    caret-color: #FFBF29 !important;
+  }
+
+ 
+
+::ng-deep .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+    color: #FFBF29 !important;
+}
+
+::ng-deep .mat-form-field.mat-focused.mat-primary .mat-select-arrow {
+    color:#FFBF29 !important;
+}
+
+::ng-deep .mat-calendar-body-selected  {
+    background-color: #FFBF29 !important;
+}
+
+::ng-deep .mat-datepicker-toggle-active {
+    color: #FFBF29 !important;
+}
+
+
+::ng-deep .color-snackbar {
+    background: #FFBF29 !important;
+    color: white;
+    position: absolute !important;
+    top: 54px;
+    right: 20px;
+}

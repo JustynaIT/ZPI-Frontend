@@ -19,7 +19,6 @@ export class ProjectsService {
   public getAll() {
     return this.http.get(environment.api + '/projects')
     .pipe(
-      map((res: any) =>  res.data),
       catchError(error => this.error(error))
       );
   }

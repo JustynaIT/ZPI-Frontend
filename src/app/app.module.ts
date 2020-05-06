@@ -39,6 +39,7 @@ import { ProjectsDetailComponent } from './components/projects/components/projec
 import { TasksComponent } from './components/projects/tasks/tasks/tasks.component';
 import { TaskFormComponent } from './components/projects/tasks/components/task-form/task-form.component';
 import { UsersIndexComponent } from './components/user/users-index/users-index.component';
+import { UserFormComponent } from './components/user/components/user-form/user-form.component';
 
 const MY_FORMATS = {
     parse: {
@@ -71,7 +72,8 @@ const MY_FORMATS = {
     ProjectsDetailComponent,
     TasksComponent,
     TaskFormComponent,
-    UsersIndexComponent
+    UsersIndexComponent,
+    UserFormComponent
   ],
   imports: [
     BrowserModule,

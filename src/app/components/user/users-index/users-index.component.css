@@ -17,7 +17,7 @@
     text-transform: uppercase;
     padding-top: 20px;
 }
-.tasks {
+.users {
     color: white;
     margin-top: 10px;
 }
@@ -36,32 +36,32 @@
     font-size: 20px;
 }
 
-.icon-edit-task {
+.icon-edit-user {
     position: absolute;
     right: 15px;
     cursor: pointer;
     z-index: 3;
 }
 
-.icon-edit-task mat-icon:hover {
+.icon-edit-user mat-icon:hover {
     color: rgb(236, 216, 170);
 }
 
-.no-tasks {
+.no-users {
     color: white;
     margin: 20px;
 }
 
-.add-task {    
+.add-user {    
     cursor: pointer;
     font-size: 11px;
     color: white;
 }
-.add-task mat-icon {
+.add-user mat-icon {
     font-size:30px;
 }
 
-.add-task:hover {
+.add-user:hover {
     color: #f3cd74;
 }
 

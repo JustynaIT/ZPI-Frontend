@@ -4,53 +4,52 @@
         Users
     </h2>
 
-    <button routerLink="/auth/user/create" mat-button class="buttonAdd ">
+    <button routerLink="/auth/users/create" mat-button class="buttonAdd ">
         <mat-icon>add</mat-icon>
         Create user
     </button>
 
     <div class="row">
-        <div class="col-md-12" *ngFor="let task of users">
+        <div class="col-md-12" *ngFor="let user of users">
             <mat-card class="card">
                 <mat-card-content>
                     <div>
                         <span 
-                            class="icon-edit-task"
+                            class="icon-edit-user"
                             *ngIf="!isEditEnable && !isAddEnable" >
                             <mat-icon                                 
-                                (click)="enableEditing(task.id)">
+                                (click)="enableEditing(user.id)">
                                 edit
                             </mat-icon>
                         </span>
-                        <span class="icon-edit-task"                        
-                              *ngIf="task.isEdit"  >
+                        <span class="icon-edit-user"                        
+                              *ngIf="user.isEdit"  >
                             <mat-icon 
-                                (click)="saveTask(task.id)">
+                                (click)="saveUser(user.id)">
                                 done
                             </mat-icon>
                             <mat-icon 
-                                (click)="cancelEditTask(task.id)">
+                                (click)="cancelEdit(user.id)">
                                 close
                             </mat-icon>
                         </span>                        
                     </div>
                     <div class="row">
                         <div class="col-md-2 text-center">
-                            <mat-icon [svgIcon]="setIcon(task.roles[0].name)" class="icon-custom"></mat-icon>
+                            <mat-icon [svgIcon]="setIcon(user.roles[0].name)" class="icon-custom"></mat-icon>
                         </div>
                         <div class="col-md-10">
-                            <div *ngIf="!task.isEdit">                                
-                                <p class="name" >{{task.name}}</p>
-                                <p >{{task?.email}}</p>
-                                <p >{{task?.profile?.phone}}</p>
-                                <p>{{task?.project?.name}}</p>
-                                <p class="date">{{task.expire_date}}</p>
+                            <div *ngIf="!user.isEdit">                                
+                                <p class="name" >{{user.name}}</p>
+                                <p >{{user?.email}}</p>
+                                <p >{{user?.profile?.phone}}</p>
+                                <p>{{user?.project?.name}}</p>
+                                <p class="date">{{user.expire_date}}</p>
                             </div>
-                            <div *ngIf="task.isEdit" class="edit-form">
-                                <app-task-form 
-                                  [usersProject]="usersProject"
-                                  [projectID]="project?.id">                            
-                                </app-task-form>
+                            <div *ngIf="user.isEdit" class="edit-form">
+                                <app-user-form 
+                                  [userID]="user?.id">                            
+                                </app-user-form>
                             </div>
                         </div>
                     </div>
@@ -58,9 +57,9 @@
                 </mat-card-content>
             </mat-card>
         </div>
-        <div *ngIf="users?.length === 0" class="no-tasks">
+        <div *ngIf="users?.length === 0" class="no-users">
             <p>
-                This project has no ticks. Add new tasks.
+                This project has no ticks. Add new user.
             </p>   
         </div>
     
@@ -73,18 +72,6 @@
                 [pageSizeOptions]="paginator.pageSizeOptions"
                 (page)="pageEvent = handlePage($event)">
             </mat-paginator>
-        </div>
-        
-        
+        </div>     
     </div>
-
-
-
-
 </div>
-
-
-<mat-icon svgIcon="admin"></mat-icon>
-<mat-icon svgIcon="user"></mat-icon>
-<mat-icon svgIcon="leader"></mat-icon>
-<mat-icon svgIcon="client"></mat-icon>

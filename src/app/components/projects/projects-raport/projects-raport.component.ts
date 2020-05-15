@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ProjectsService } from 'src/app/services/projects.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-projects-raport',
@@ -46,7 +45,6 @@ export class ProjectsRaportComponent implements OnInit {
       next: (res) => {
         this.raport = res;
         this.raportTasks = res.report.tasks_between;
-        console.log(res);
       },
       error: (error) => {
         if (error.error.code === 422) {
@@ -70,7 +68,7 @@ export class ProjectsRaportComponent implements OnInit {
     }
   }
 
-  sumHours() {
+  public sumHours() {
     let sum = 0;
     this.raportTasks.forEach(task => {
       sum += task.hours_spent;

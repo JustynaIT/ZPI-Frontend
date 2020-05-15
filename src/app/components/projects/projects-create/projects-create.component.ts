@@ -26,10 +26,10 @@ export class ProjectsCreateComponent implements OnInit {
   ngOnInit() {
   }
 
-  addProject() {
+  public addProject() {
+    const formInvalid = this.AddProjectForm.invalid;
 
-    if (!this.AddProjectForm.invalid) {
-
+    if (!formInvalid) {
       this.projectS.create(this.AddProjectForm.value).subscribe(
         res => {
           this.router.navigate(['/auth/projects']);

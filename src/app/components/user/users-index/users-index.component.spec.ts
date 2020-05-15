@@ -1,6 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UsersIndexComponent } from './users-index.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { MatSnackBarModule } from '@angular/material';
 
 describe('UsersIndexComponent', () => {
   let component: UsersIndexComponent;
@@ -8,7 +13,17 @@ describe('UsersIndexComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UsersIndexComponent ]
+      declarations: [ UsersIndexComponent ],
+      schemas: [
+        CUSTOM_ELEMENTS_SCHEMA
+      ],
+      imports: [
+        ReactiveFormsModule,
+        RouterTestingModule,
+        FormsModule,
+        HttpClientTestingModule,
+        MatSnackBarModule,
+      ],
     })
     .compileComponents();
   }));

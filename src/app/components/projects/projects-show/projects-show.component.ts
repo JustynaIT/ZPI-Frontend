@@ -27,20 +27,20 @@ export class ProjectsShowComponent implements OnInit {
               ) {}
 
   ngOnInit() {
-    this.fetchProject();
+    this.idProject = this.route.snapshot.paramMap.get('id');
+    this.fetchProject(this.idProject);
     this.fetchTasks();
   }
 
-  private fetchProject() {
-    this.idProject = this.route.snapshot.paramMap.get('id');
-    if (this.idProject === null) {
+  private fetchProject(id) {
+    if (id === null) {
       this.projectS.getProjectCurrentUser()
         .subscribe((res) => {
           this.project = res;
           this.fetchUsersProject();
         });
     } else {
-      this.projectS.get(this.idProject)
+      this.projectS.get(id)
         .subscribe((res: any) => {
           this.project = res;
           this.fetchUsersProject();
@@ -70,8 +70,8 @@ export class ProjectsShowComponent implements OnInit {
     } else {
       this.tasksS.getProjectTasks(this.idProject, pageIndex + 1)
         .subscribe((res: any) => {
+          this.task.setPaginator(res.meta.total);
           this.tasks = res.data.map(task => {
-            this.task.setPaginator(res.meta.total);
             return {
               isEdit: false,
               ...task,

@@ -64,7 +64,6 @@ export class UsersIndexComponent implements OnInit {
           });
       },
       error: (error) => {
-        debugger
         this.validators.handlerError(error);
       }
     });

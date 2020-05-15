@@ -4,6 +4,9 @@ import { MainComponent } from './main.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HeaderComponent } from '../header/header.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { MatSnackBarModule } from '@angular/material';
 
 describe('MainComponent', () => {
   let component: MainComponent;
@@ -16,8 +19,12 @@ describe('MainComponent', () => {
         CUSTOM_ELEMENTS_SCHEMA
       ],
       imports: [
-        RouterTestingModule
-      ]
+        ReactiveFormsModule,
+        RouterTestingModule,
+        FormsModule,
+        HttpClientTestingModule,
+        MatSnackBarModule
+      ],
     })
     .compileComponents();
   }));

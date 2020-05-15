@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { MatSnackBarModule } from '@angular/material';
 
 describe('SignInComponent', () => {
   let component: SignInComponent;
@@ -28,6 +28,7 @@ describe('SignInComponent', () => {
         RouterTestingModule,
         HttpClientTestingModule,
         ReactiveFormsModule,
+        MatSnackBarModule,
         BrowserAnimationsModule],
       providers: [
         AuthService,

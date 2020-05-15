@@ -32,7 +32,7 @@ export class ProjectsEditComponent implements OnInit {
     });
   }
 
-  editProject() {
+  public editProject() {
 
     if (!this.EditProjectForm.invalid) {
 

@@ -10,7 +10,6 @@ import { ProjectsService } from 'src/app/services/projects.service';
 })
 export class UserFormComponent implements OnInit {
 
-  @Input() userID;
   public projects;
   public userForm: FormGroup;
   constructor(private formBuilder: FormBuilder,

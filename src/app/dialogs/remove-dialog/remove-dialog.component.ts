@@ -9,7 +9,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 export class RemoveDialogComponent {
 
   public yes = true;
-  
+
   constructor(
     public dialogRef: MatDialogRef<RemoveDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data) {}

@@ -34,10 +34,4 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('ZPI-Frontend');
   });
 
-  
-
-  it(`should have router-outlet`, () => {
-    expect(fixture.nativeElement.querySelector('router-outlet').toBeTruthy);
-  });
-
 });

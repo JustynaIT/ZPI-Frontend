@@ -159,7 +159,7 @@ export class TasksComponent implements OnInit {
     this.fetchTasks.emit(event.pageIndex);
   }
 
-  setPaginator(total) {
+  public setPaginator(total) {
     this.paginator.length = total;
   }
 }

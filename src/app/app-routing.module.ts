@@ -13,6 +13,8 @@ import { ProjectsEditComponent } from './components/projects/projects-edit/proje
 import { ProjectsShowComponent } from './components/projects/projects-show/projects-show.component';
 import { ProjectsRaportComponent } from './components/projects/projects-raport/projects-raport.component';
 import { UsersIndexComponent } from './components/user/users-index/users-index.component';
+import { ProjectsDocumentsComponent } from './components/projects/projects-documents/projects-documents.component';
+import { ProfileUserComponent } from './components/user/profile-user/profile-user.component';
 
 const roles = {
     A: ['ADMIN'],
@@ -24,27 +26,10 @@ const routes: Routes = [
     { path: '', component: SignInComponent },
     { path: 'auth', component: MainComponent,
         children: [{
-                path: 'tasks',
-                children: [
-                    {
-                        path: '',
-                        component: TasksIndexComponent,
-                        canActivate: [AuthGuard],
-                        data: { roles: roles.ALL }
-                    },
-                    {
-                        path: 'create',
-                        component: TasksCreateComponent,
-                        canActivate: [AuthGuard],
-                        data: { roles: roles.ALL }
-                    },
-                    {
-                        path: 'edit/:id',
-                        component: TasksEditComponent,
-                        canActivate: [AuthGuard],
-                        data: { roles: roles.ALL }
-                    }
-                ]
+                path: 'profile',
+                component: ProfileUserComponent,
+                canActivate: [AuthGuard],
+                data: { roles: roles.ALL }
             }, {
                 path: 'projects',
                 children: [{
@@ -81,6 +66,12 @@ const routes: Routes = [
                     {
                         path: 'raport/:id',
                         component: ProjectsRaportComponent,
+                        canActivate: [AuthGuard],
+                        data: { roles: roles.ALC },
+                    },
+                    {
+                        path: 'document/:id',
+                        component: ProjectsDocumentsComponent,
                         canActivate: [AuthGuard],
                         data: { roles: roles.ALC },
                     }

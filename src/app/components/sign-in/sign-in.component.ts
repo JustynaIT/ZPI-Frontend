@@ -23,7 +23,7 @@ export class SignInComponent implements OnInit {
 
   ngOnInit() {
     if (this.authService.isAuthenticated()) {
-      this.navigate(['/auth/tasks']);
+      this.navigate(['/auth/profile']);
     }
   }
 
@@ -34,14 +34,14 @@ export class SignInComponent implements OnInit {
 
         this.authService.getUser().subscribe((resUser: any) => {
           localStorage.setItem('roles', resUser.data.item.roles[0].name);
-          this.navigate(['/auth/tasks']);
+          this.navigate(['/auth/profile']);
         });
       });
     }
   }
 
   navigate(path: Array<string>) {
-    this.router.navigate(['/auth/tasks']);
+    this.router.navigate(path);
   }
 
 }

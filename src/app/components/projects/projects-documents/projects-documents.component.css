@@ -1,0 +1,45 @@
+@import '../../../../styles.css';
+.title {
+    color: #FFBF29;
+    text-align: center;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding-top: 20px;
+}
+.iconBack {
+    color:rgb(243, 205, 116);
+    cursor: pointer;
+}
+.button-add {
+    margin-right: 40px !important;
+    background-color:rgb(243, 205, 116);
+    color: #303030;
+}
+
+.icon-edit-doc {
+    position: absolute;
+    right: 15px;
+    cursor: pointer;
+    z-index: 3;
+}
+.card {
+    margin: 15px 0;
+    letter-spacing: 1.5px;
+}
+
+.name {
+    text-transform: uppercase;
+    font-size: 16px;
+    color: #f3cd74;
+   
+}
+.pointer {
+    cursor: pointer;
+}
+
+.paginator {
+    background-color: #303030;
+   }
+.form {
+    margin: 5px;
+}

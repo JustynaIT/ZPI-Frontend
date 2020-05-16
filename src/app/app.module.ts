@@ -40,6 +40,9 @@ import { TasksComponent } from './components/projects/tasks/tasks/tasks.componen
 import { TaskFormComponent } from './components/projects/tasks/components/task-form/task-form.component';
 import { UsersIndexComponent } from './components/user/users-index/users-index.component';
 import { UserFormComponent } from './components/user/components/user-form/user-form.component';
+import { ProjectsDocumentsComponent } from './components/projects/projects-documents/projects-documents.component';
+import { DocumentsService } from './services/documents.service';
+import { ProfileUserComponent } from './components/user/profile-user/profile-user.component';
 
 const MY_FORMATS = {
     parse: {
@@ -73,7 +76,9 @@ const MY_FORMATS = {
     TasksComponent,
     TaskFormComponent,
     UsersIndexComponent,
-    UserFormComponent
+    UserFormComponent,
+    ProjectsDocumentsComponent,
+    ProfileUserComponent
   ],
   imports: [
     BrowserModule,
@@ -103,7 +108,7 @@ const MY_FORMATS = {
   entryComponents: [
     RemoveDialogComponent
   ],
-  providers: [ ProjectsService,
+  providers: [ ProjectsService, DocumentsService,
     { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
     { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }],

@@ -32,7 +32,7 @@ export class ProjectsRaportComponent implements OnInit {
 
   private fetchProject() {
     this.idProject = this.route.snapshot.paramMap.get('id');
-    this.projectS.getProjectCurrentUser()
+    this.projectS.get(this.idProject)
       .subscribe((res) => {
         this.project = res;
       });

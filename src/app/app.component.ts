@@ -7,7 +7,7 @@ import { MatIconRegistry } from '@angular/material';
   template: `<router-outlet></router-outlet>`,
 })
 export class AppComponent {
-  title = 'ZPI-Frontend';
+  title = 'TASKAGER';
 
   constructor(private matIconRegistry: MatIconRegistry,
               private domSanitizer: DomSanitizer) {

@@ -76,3 +76,8 @@
 .paginator {
     background-color: #303030;
    }
+
+   .date_done {
+    color: rgb(183, 223, 175);
+    font-size: 11px;
+   }

@@ -1,6 +1,6 @@
 <mat-toolbar class="toolbar">
     <mat-toolbar-row>
-        <span>MY APP</span>
+        <span>TASKAGER </span>
         <span class="example-spacer"></span>
         <span *ngIf="authS.role() === 'ADMIN'"  routerLink="/auth/projects" class="item">Projects</span>
         <span *ngIf="authS.role() !== 'ADMIN'"  routerLink="/auth/projects/show" class="item">Project</span>

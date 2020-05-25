@@ -3,6 +3,7 @@ import { FormGroup, Validators, FormControl, FormBuilder } from '@angular/forms'
 import { AuthService } from 'src/app/services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ValidatorsService } from 'src/app/services/validators.service';
+import { ProjectsService } from 'src/app/services/projects.service';
 
 @Component({
   selector: 'app-add-user',
@@ -12,6 +13,7 @@ import { ValidatorsService } from 'src/app/services/validators.service';
 export class AddUserComponent implements OnInit, OnDestroy {
 
   public userForm: FormGroup;
+  public projects;
   public roles = [
     { value: 'ADMIN', label: 'Admin' },
     { value: 'LEADER', label: 'Leader' },
@@ -20,6 +22,7 @@ export class AddUserComponent implements OnInit, OnDestroy {
 
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService,
+              private projectsS: ProjectsService,
               private validators: ValidatorsService,
               private snackBar: MatSnackBar) {}
 
@@ -37,6 +40,16 @@ export class AddUserComponent implements OnInit, OnDestroy {
     });
 
     this.validators.setForm(this.userForm);
+    this.fetchProjects();
+  }
+
+  public fetchProjects() {
+    this.projectsS.getAll().subscribe({
+      next: (res: any) => {
+        this.projects = res.data;
+      }
+    });
+
   }
 
   public addUser() {

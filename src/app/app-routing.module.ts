@@ -15,6 +15,7 @@ import { ProjectsRaportComponent } from './components/projects/projects-raport/p
 import { UsersIndexComponent } from './components/user/users-index/users-index.component';
 import { ProjectsDocumentsComponent } from './components/projects/projects-documents/projects-documents.component';
 import { ProfileUserComponent } from './components/user/profile-user/profile-user.component';
+import { ProfileUserEditComponent } from './components/user/profile-user-edit/profile-user-edit.component';
 
 const roles = {
     A: ['ADMIN'],
@@ -28,6 +29,12 @@ const routes: Routes = [
         children: [{
                 path: 'profile',
                 component: ProfileUserComponent,
+                canActivate: [AuthGuard],
+                data: { roles: roles.ALL }
+            },
+            {
+                path: 'profile/edit/:id',
+                component: ProfileUserEditComponent,
                 canActivate: [AuthGuard],
                 data: { roles: roles.ALL }
             }, {

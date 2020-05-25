@@ -1,9 +1,4 @@
 
-
-
-
-
-
   /* Change label color on focused */
   ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
     color: #FFBF29 !important;

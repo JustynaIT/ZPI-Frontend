@@ -44,7 +44,19 @@
                     </div>
                 </mat-card-actions>
             </mat-card>
+
+            
         </div>
     </div>
+    <div *ngIf="projects?.length > 0" class=" col-md-12 d-flex flex-row-reverse">
+        <mat-paginator 
+            class="paginator text-right"
+            [pageIndex]="paginator.pageIndex"
+            [length]="paginator.length"
+            [pageSize]="paginator.pageSize"
+            [pageSizeOptions]="paginator.pageSizeOptions"
+            (page)="pageEvent = handlePage($event)">
+        </mat-paginator>
+    </div> 
 
 </div>

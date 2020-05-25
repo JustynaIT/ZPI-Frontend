@@ -56,8 +56,8 @@ describe('ProjectsCreateComponent', () => {
     const navigateSpy = spyOn(router, 'navigate');
     const openSpy = spyOn(snackBar, 'open');
 
-    component.AddProjectForm.controls['name'].setValue('project');
-    component.AddProjectForm.controls['budget'].setValue(1000);
+    component.AddProjectForm.controls.name.setValue('project');
+    component.AddProjectForm.controls.budget.setValue(1000);
 
     component.addProject();
     expect(createSpy).toHaveBeenCalled();

@@ -43,6 +43,7 @@ import { UserFormComponent } from './components/user/components/user-form/user-f
 import { ProjectsDocumentsComponent } from './components/projects/projects-documents/projects-documents.component';
 import { DocumentsService } from './services/documents.service';
 import { ProfileUserComponent } from './components/user/profile-user/profile-user.component';
+import { ProfileUserEditComponent } from './components/user/profile-user-edit/profile-user-edit.component';
 
 const MY_FORMATS = {
     parse: {
@@ -78,7 +79,8 @@ const MY_FORMATS = {
     UsersIndexComponent,
     UserFormComponent,
     ProjectsDocumentsComponent,
-    ProfileUserComponent
+    ProfileUserComponent,
+    ProfileUserEditComponent
   ],
   imports: [
     BrowserModule,

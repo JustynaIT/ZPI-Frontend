@@ -68,6 +68,13 @@ export class AuthService {
       );
   }
 
+  public updateProfile(id: number, user: any) {
+    return this.http.patch(environment.api + `/profiles/${id}`, user)
+      .pipe(
+        catchError(error => this.error(error))
+      );
+  }
+
   error(error) {
     switch (error.error.code) {
       case 401: {

@@ -78,7 +78,6 @@ export class UsersIndexComponent implements OnInit {
       next: (res: any) => {
         this.users = res.data;
         this.paginator.length = res.meta.total;
-        console.log(res)
       }
     });
   }

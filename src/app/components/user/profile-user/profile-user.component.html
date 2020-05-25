@@ -6,6 +6,13 @@
     <div class="col-md-12">
         <mat-card class="card">
             <mat-card-content>
+                <span 
+                class="icon-edit-profile">
+                    <mat-icon                                 
+                    [routerLink]="['/auth/profile/edit/', user?.id]">
+                        edit
+                    </mat-icon>
+                </span>
                 <div class="row">
                     <div class="col-md-2 text-center">
                         <mat-icon [svgIcon]="setIcon(user?.roles[0]?.name)" class="icon-custom"></mat-icon>

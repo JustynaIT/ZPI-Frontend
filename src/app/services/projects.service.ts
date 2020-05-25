@@ -16,8 +16,14 @@ export class ProjectsService {
               private router: Router,
               private snackBar: MatSnackBar) { }
 
-  public getAll() {
-    return this.http.get(environment.api + '/projects')
+  public getAll(page?) {
+    if (page) {
+      return this.http.get(environment.api + `/projects?page=${page}&results=5`)
+      .pipe(
+        catchError(error => this.error(error))
+        );
+    }
+    return this.http.get(environment.api + `/projects`)
     .pipe(
       catchError(error => this.error(error))
       );

@@ -10,19 +10,31 @@
     </div>
     <div class="col-md-9 tasks">
         <div class="row text-center">
-            <div class="col-6 col-sm-3">
+            <div class="col-6 col-sm-3"
+            matTooltipPosition='above' 
+            matTooltipShowDelay='1000'
+            matTooltip="All tasks">
                 <mat-icon class="icon ">reorder</mat-icon>
                 <span class="text-icon">{{project?.total_tasks}}</span>
             </div>
-            <div class="col-6 col-sm-3">
+            <div class="col-6 col-sm-3"
+            matTooltipPosition='above' 
+            matTooltipShowDelay='1000'
+            matTooltip="Done tasks">
                 <mat-icon class="icon ">done</mat-icon>
                 <span>{{project?.done_tasks}}</span>
             </div>
-            <div class="col-6 col-sm-3">
+            <div class="col-6 col-sm-3"
+            matTooltipPosition='above' 
+            matTooltipShowDelay='1000'
+            matTooltip="In progress tasks">            
                 <mat-icon class="icon ">update</mat-icon>
                 <span>{{project?.in_progress_tasks}}</span>
             </div>
-            <div class="col-6 col-sm-3">
+            <div class="col-6 col-sm-3"
+            matTooltipPosition='above' 
+            matTooltipShowDelay='1000'
+            matTooltip="Not assigned tasks">
                 <mat-icon class="icon ">report</mat-icon>
                 <span>{{project?.not_assigned_tasks}}</span>
             </div>
@@ -87,6 +99,7 @@
                 <div class="row">
                     <div class="col-md-2 text-center">
                         <mat-icon class="icon " [ngStyle]="{'color': setColor(task.priority, task.status)}">{{setIcon(task.status)}}</mat-icon>
+                        <p *ngIf="task.done_at" class="date_done">{{task.done_at}}</p>
                     </div>
                     <div class="col-md-10">
                         <div *ngIf="!task.isEdit">                                

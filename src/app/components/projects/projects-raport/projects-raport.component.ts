@@ -44,7 +44,7 @@ export class ProjectsRaportComponent implements OnInit {
     this.projectS.getRaport(this.idProject, startDate, endDate).subscribe({
       next: (res) => {
         this.raport = res;
-        this.raportTasks = res.report.tasks_between;
+        this.raportTasks = res.report.done_tasks_between;
       },
       error: (error) => {
         if (error.error.code === 422) {

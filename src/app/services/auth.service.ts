@@ -82,6 +82,13 @@ export class AuthService {
         this.router.navigate(['']);
         break;
       }
+      case 404: {
+        this.snackBar.open(error.error.message, 'close', {
+          duration: 4000,
+          panelClass: ['color-snackbar-error']
+        });
+        break;
+      }
       case 422: {
         break;
       }

@@ -5,6 +5,7 @@ import { TasksService } from 'src/app/services/tasks.service';
 import { MatDialog } from '@angular/material';
 import { ValidatorsService } from 'src/app/services/validators.service';
 import { TasksComponent } from '../tasks/tasks/tasks.component';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-projects-show',
@@ -23,13 +24,13 @@ export class ProjectsShowComponent implements OnInit {
               private tasksS: TasksService,
               private route: ActivatedRoute,
               public dialog: MatDialog,
-              private validators: ValidatorsService
+              private validators: ValidatorsService,
+              private authS: AuthService,
               ) {}
 
   ngOnInit() {
     this.idProject = this.route.snapshot.paramMap.get('id');
     this.fetchProject(this.idProject);
-    this.fetchTasks();
   }
 
   private fetchProject(id) {
@@ -38,12 +39,14 @@ export class ProjectsShowComponent implements OnInit {
         .subscribe((res) => {
           this.project = res;
           this.fetchUsersProject();
+          this.fetchTasks();
         });
     } else {
       this.projectS.get(id)
         .subscribe((res: any) => {
           this.project = res;
           this.fetchUsersProject();
+          this.fetchTasks();
         });
     }
   }
@@ -61,14 +64,12 @@ export class ProjectsShowComponent implements OnInit {
       pageIndex = 0;
     }
 
-    if (this.idProject === null) {
-      this.tasksS.getTasksCurrentUser(pageIndex + 1)
-        .subscribe((res: any) => {
-          this.task.setPaginator(res.meta.total);
-          this.tasks = res.data;
-        });
-    } else {
-      this.tasksS.getProjectTasks(this.idProject, pageIndex + 1)
+    if (this.authS.role() !== 'ADMIN') {
+      this.idProject = this.project.id;
+    }
+
+    if (this.idProject !== null) {
+        this.tasksS.getProjectTasks(this.idProject, pageIndex + 1)
         .subscribe((res: any) => {
           this.task.setPaginator(res.meta.total);
           this.tasks = res.data.map(task => {
@@ -77,6 +78,12 @@ export class ProjectsShowComponent implements OnInit {
               ...task,
             };
           });
+        });
+    } else {
+      this.tasksS.getTasksCurrentUser(pageIndex + 1)
+        .subscribe((res: any) => {
+          this.task.setPaginator(res.meta.total);
+          this.tasks = res.data;
         });
     }
   }

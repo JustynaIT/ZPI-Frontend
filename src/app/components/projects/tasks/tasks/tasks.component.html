@@ -76,7 +76,7 @@
                     <span 
                         class="icon-edit-task"
                         *ngIf="!isEditEnable && !isAddEnable" >
-                        <mat-icon *ngIf="authS.role() !== 'ADMIN' || authS.userId() == task.user.id"                               
+                        <mat-icon *ngIf="authS.role() !== 'WORKER' || authS.userId() == task.user.id"                               
                             (click)="enableEditing(task.id)">
                             edit
                         </mat-icon>

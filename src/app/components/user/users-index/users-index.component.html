@@ -39,12 +39,22 @@
                             <mat-icon [svgIcon]="setIcon(user.roles[0].name)" class="icon-custom"></mat-icon>
                         </div>
                         <div class="col-md-10">
-                            <div *ngIf="!user.isEdit">                                
-                                <p class="name" >{{user.name}}</p>
-                                <p >{{user?.email}}</p>
-                                <p >{{user?.profile?.phone}}</p>
-                                <p>{{user?.project?.name}}</p>
-                                <p class="date">{{user.expire_date}}</p>
+                            
+                            <div class="row" *ngIf="!user.isEdit">
+                                <div class="col-md-5">
+                                    <p class="name" >{{user.name}}</p>                                 
+                                    <p >{{user?.email}}</p>
+                                    <p >{{user?.profile?.phone}}</p>
+                                    <p>{{user?.project?.name}}</p>
+                                </div>
+                                <div class="col-md-5">
+                                    <p class="name" >Tasks:</p>
+                                    <p>All: {{user?.profile?.all_tasks}}</p>
+                                    <p>In Progress: {{user?.profile?.in_progress_tasks}}</p>
+                                    <p>Done: {{user?.profile?.done_tasks}}</p>
+                                </div>
+
+                                
                             </div>
                             <div *ngIf="user.isEdit" class="edit-form">
                                 <app-user-form>                            

@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ValidatorsService } from 'src/app/services/validators.service';
 import { ProjectsService } from 'src/app/services/projects.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-task-form',
@@ -26,6 +27,7 @@ export class TaskFormComponent implements OnInit {
   ];
   constructor(private formBuilder: FormBuilder,
               private validators: ValidatorsService,
+              private authS: AuthService,
               private projectS: ProjectsService) { }
 
   ngOnInit() {

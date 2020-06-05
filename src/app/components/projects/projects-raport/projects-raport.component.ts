@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectsService } from 'src/app/services/projects.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-projects-raport',
@@ -19,6 +20,8 @@ export class ProjectsRaportComponent implements OnInit {
 
   constructor(private projectS: ProjectsService,
               private formBuilder: FormBuilder,
+              private authS: AuthService,
+              private router: Router,
               private route: ActivatedRoute) {
     this.raportForm = this.formBuilder.group({
       date_start: new FormControl('', [Validators.required]),
@@ -65,6 +68,14 @@ export class ProjectsRaportComponent implements OnInit {
     }
     if (this.raportForm.get(key).errors.server) {
       return this.raportForm.get(key).errors.server;
+    }
+  }
+
+  public goBack() {
+    if (this.authS.role() === 'ADMIN') {
+      this.router.navigate(['/auth/projects/show/', { id: this.project.id}]);
+    } else {
+      this.router.navigate(['/auth/projects/show']);
     }
   }
 

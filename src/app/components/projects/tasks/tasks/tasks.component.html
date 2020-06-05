@@ -2,7 +2,7 @@
     <div class="col-md-3">
         <h2 class="subtitle">
             Tasks
-            <span class="add-task" (click)="enableAdd()">
+            <span *ngIf="authS.role() !== 'WORKER'" class="add-task" (click)="enableAdd()">
                 <mat-icon >add</mat-icon> 
                 add
             </span>
@@ -44,7 +44,8 @@
         <mat-card class="card">
             <mat-card-content>
                 <div class="row">
-                    <span class="icon-edit-task"                        
+                    <span 
+                        class="icon-edit-task"                      
                           >
                         <mat-icon 
                             (click)="addTask()">
@@ -75,11 +76,11 @@
                     <span 
                         class="icon-edit-task"
                         *ngIf="!isEditEnable && !isAddEnable" >
-                        <mat-icon                                 
+                        <mat-icon *ngIf="authS.role() !== 'ADMIN' || authS.userId() == task.user.id"                               
                             (click)="enableEditing(task.id)">
                             edit
                         </mat-icon>
-                        <mat-icon 
+                        <mat-icon *ngIf="authS.role() !== 'WORKER'"
                             (click)="openDialog(task.id)">
                              delete
                         </mat-icon>

@@ -4,6 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry, PageEvent, MatSnackBar } from '@angular/material';
 import { UserFormComponent } from '../components/user-form/user-form.component';
 import { ValidatorsService } from 'src/app/services/validators.service';
+import { ProjectsService } from 'src/app/services/projects.service';
 
 @Component({
   selector: 'app-users-index',
@@ -26,6 +27,7 @@ export class UsersIndexComponent implements OnInit {
   public indexEditUser: number;
 
   constructor(private authS: AuthService,
+              private projectS: ProjectsService,
               private snackBar: MatSnackBar,
               private matIconRegistry: MatIconRegistry,
               private validators: ValidatorsService,
@@ -74,12 +76,25 @@ export class UsersIndexComponent implements OnInit {
       pageIndex = 0;
     }
 
-    this.authS.getUserAll(pageIndex + 1).subscribe({
-      next: (res: any) => {
-        this.users = res.data;
-        this.paginator.length = res.meta.total;
-      }
-    });
+    if (this.authS.role() !== 'ADMIN') {
+      this.authS.getUser().subscribe({
+        next: (resUser: any) => {
+          this.projectS.getUsersProject(resUser.data.item.project_id).subscribe({
+            next: (resUsers: any) => {
+              this.users = resUsers.data;
+              this.paginator.length = resUsers.meta.total;
+            }
+          });
+        }
+      });
+    } else {
+      this.authS.getUserAll(pageIndex + 1).subscribe({
+        next: (res: any) => {
+          this.users = res.data;
+          this.paginator.length = res.meta.total;
+        }
+      });
+    }
   }
 
   setPageSizeOptions(setPageSizeOptionsInput: string) {

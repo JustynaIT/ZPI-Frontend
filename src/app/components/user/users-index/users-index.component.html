@@ -4,7 +4,7 @@
         Users
     </h2>
 
-    <button routerLink="/auth/users/create" mat-button class="buttonAdd ">
+    <button *ngIf="authS.role() === 'ADMIN'" routerLink="/auth/users/create" mat-button class="buttonAdd ">
         <mat-icon>add</mat-icon>
         Create user
     </button>
@@ -13,7 +13,7 @@
         <div class="col-md-12" *ngFor="let user of users">
             <mat-card class="card">
                 <mat-card-content>
-                    <div>
+                    <div *ngIf="authS.role() === 'ADMIN'">
                         <span 
                             class="icon-edit-user"
                             *ngIf="!isEditEnable && !isAddEnable" >

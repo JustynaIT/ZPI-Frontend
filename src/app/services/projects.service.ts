@@ -40,7 +40,6 @@ export class ProjectsService {
   public getUsersProject(id: number) {
     return this.http.get(environment.api + `/projects/${id}/users`)
     .pipe(
-      map((res: any) => res.data),
       catchError(error => this.error(error))
     );
   }

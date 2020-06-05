@@ -28,6 +28,10 @@ export class AuthService {
     return localStorage.getItem('roles');
   }
 
+  userId() {
+    return localStorage.getItem('userId');
+  }
+
 
   public getToken(): string {
     return localStorage.getItem('access_token');

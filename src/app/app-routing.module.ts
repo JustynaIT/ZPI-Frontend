@@ -80,7 +80,7 @@ const routes: Routes = [
                         path: 'document/:id',
                         component: ProjectsDocumentsComponent,
                         canActivate: [AuthGuard],
-                        data: { roles: roles.ALC },
+                        data: { roles: roles.ALL },
                     }
                 ]
             },
@@ -90,7 +90,7 @@ const routes: Routes = [
                     path: '',
                     component: UsersIndexComponent,
                     canActivate: [AuthGuard],
-                    data: { roles: roles.A }
+                    data: { roles: roles.ALL }
                 },
                 {
                     path: 'create',

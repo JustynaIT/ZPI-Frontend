@@ -41,8 +41,8 @@
         <mat-card class="card">
             <mat-card-content>
                 <p><strong>Client:</strong>  {{project?.client?.name}}</p>
-                <p> <strong>Lider:</strong> Jan Kowalski</p>
-                <button mat-raised-button class="button-report" [routerLink]="['/auth/projects/raport/', project?.id]">Reports</button>
+                <p> <strong>Number of users:</strong> {{project?.assignees}}</p>
+                <button *ngIf="authS.role() !== 'WORKER'" mat-raised-button class="button-report" [routerLink]="['/auth/projects/raport/', project?.id]">Reports</button>
                 <button mat-raised-button class="button-report documents" [routerLink]="['/auth/projects/document', project?.id]">Documents</button>
             </mat-card-content>
         </mat-card>

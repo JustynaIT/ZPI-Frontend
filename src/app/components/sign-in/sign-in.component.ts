@@ -34,6 +34,7 @@ export class SignInComponent implements OnInit {
 
         this.authService.getUser().subscribe((resUser: any) => {
           localStorage.setItem('roles', resUser.data.item.roles[0].name);
+          localStorage.setItem('userId', resUser.data.item.id);
           this.navigate(['/auth/profile']);
         });
       });

@@ -5,6 +5,7 @@ import { TasksService } from 'src/app/services/tasks.service';
 import { ValidatorsService } from 'src/app/services/validators.service';
 import { RemoveDialogComponent } from 'src/app/dialogs/remove-dialog/remove-dialog.component';
 import { ProjectsService } from 'src/app/services/projects.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-tasks',
@@ -34,6 +35,7 @@ export class TasksComponent implements OnInit {
   constructor(private tasksS: TasksService,
               private snackBar: MatSnackBar,
               public dialog: MatDialog,
+              private authS: AuthService,
               private projectS: ProjectsService,
               private validators: ValidatorsService) { }
 
@@ -51,16 +53,27 @@ export class TasksComponent implements OnInit {
 
   public saveTask(id) {
     const taskForm = this.taskForm.getForm();
+    let taskValue;
 
-    this.tasksS.edit(id, taskForm.value).subscribe({
-      next: () => {
+    if (this.authS.role() === 'WORKER') {
+      taskValue = {
+        hours_spent: taskForm.value.hours_spent,
+        status: taskForm.value.status,
+        priority: taskForm. value.priority,
+      };
+    } else {
+     taskValue = taskForm.value;
+    }
+
+    this.tasksS.edit(id, taskValue).subscribe({
+      next: (res: any) => {
         this.tasks[this.indexEditTask].isEdit = false;
         this.isEditEnable = false;
         this.fetchTasks.emit();
         this.fetchProject.emit();
         this.tasks[this.indexEditTask].isEdit = false;
         this.isEditEnable = false;
-        this.snackBar.open('task edited', 'close', {
+        this.snackBar.open(res.message, 'close', {
             duration: 2000,
             panelClass: ['color-snackbar']
           });

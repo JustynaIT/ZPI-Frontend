@@ -1,10 +1,10 @@
 <div class="container">
 
     <h2 class="title">
-        <mat-icon class="iconBack" [routerLink]="['/auth/projects/show/', idProject]">arrow_back_ios</mat-icon>
+        <mat-icon class="iconBack" (click)="goBack()">arrow_back_ios</mat-icon>
         Documents
     </h2>
-    <div class="col-md-12">
+    <div *ngIf="authS.role() !== 'WORKER'" class="col-md-12">
         <mat-card class="card">
             <mat-card-content>
                 <p class="name">Add new document</p>
@@ -41,7 +41,7 @@
     <div class="col-md-12" *ngFor="let dokument of documents">
         <mat-card class="card">
             <mat-card-content>
-                <div>
+                <div *ngIf="authS.role() !== 'WORKER'" >
                     <span class="icon-edit-doc" *ngIf="!isEditEnable && !isAddEnable">
                         <!--                         <mat-icon                                 
                             (click)="enableEditing(dokument.id)">

@@ -38,7 +38,6 @@ export class ProfileUserEditComponent implements OnInit, OnDestroy {
         this.userForm.controls.name.setValue(this.user.name);
         this.userForm.controls.birth_date.setValue(this.user.profile.birth_date);
         this.userForm.controls.phone.setValue(this.user.profile.phone);
-        console.log(this.user);
       }
     });
   }

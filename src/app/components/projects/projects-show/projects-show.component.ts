@@ -53,8 +53,8 @@ export class ProjectsShowComponent implements OnInit {
 
   private fetchUsersProject() {
     this.projectS.getUsersProject(this.project.id).subscribe({
-      next: (res) => {
-        this.usersProject = res;
+      next: (res: any) => {
+        this.usersProject = res.data;
       },
     });
   }

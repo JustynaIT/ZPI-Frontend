@@ -1,11 +1,11 @@
 <div class="edit-form">
     <form [formGroup]="taskForm" class="example-form row">
-        <mat-form-field class="col-md-6">
+        <mat-form-field *ngIf="authS.role() !== 'WORKER'" class="col-md-6">
             <mat-label>Name</mat-label>
             <input matInput placeholder="Name" formControlName="name" name="name" required>
             <mat-error *ngIf="this.taskForm.get('name').invalid">{{ validators.getErrorMessage('name')}}</mat-error>
         </mat-form-field>
-        <mat-form-field class="col-md-6">
+        <mat-form-field *ngIf="authS.role() !== 'WORKER'" class="col-md-6">
             <mat-label>Employee</mat-label>
             <mat-select formControlName="user_id">
                 <mat-option *ngFor="let user of usersProject" [value]="user.id">{{user.name}}</mat-option>
@@ -31,12 +31,12 @@
             <input matInput placeholder="Hours spent" formControlName="hours_spent" name="hours_spent">
             <mat-error *ngIf="this.taskForm.get('hours_spent').invalid">{{ validators.getErrorMessage('hours_spent')}}</mat-error>
         </mat-form-field>
-        <mat-form-field class="col-md-6">
+        <mat-form-field *ngIf="authS.role() !== 'WORKER'" class="col-md-6">
             <mat-label> Expire date</mat-label>
             <input matInput type="datetime-local" formControlName="expire_date" placeholder="Expire date" name="expire_date" required>
             <mat-error *ngIf="this.taskForm.get('expire_date').invalid">{{ validators.getErrorMessage('expire_date')}}</mat-error>
         </mat-form-field>
-        <mat-form-field class="col-md-12">
+        <mat-form-field *ngIf="authS.role() !== 'WORKER'" class="col-md-12">
             <mat-label>Description</mat-label>
             <input matInput placeholder="description" formControlName="description" name="description">
             <mat-error *ngIf="this.taskForm.get('description').invalid">{{ validators.getErrorMessage('description')}}</mat-error>

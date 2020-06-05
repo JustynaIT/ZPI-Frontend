@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { DocumentsService } from 'src/app/services/documents.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
 import { RemoveDialogComponent } from 'src/app/dialogs/remove-dialog/remove-dialog.component';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-projects-documents',
@@ -28,6 +29,8 @@ export class ProjectsDocumentsComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               public dialog: MatDialog,
               private snackBar: MatSnackBar,
+              private authS: AuthService,
+              private router: Router,
               private documentS: DocumentsService,
               private route: ActivatedRoute ) { }
 
@@ -62,7 +65,6 @@ export class ProjectsDocumentsComponent implements OnInit {
           duration: 2000,
           panelClass: ['color-snackbar']
         });
-        console.log(res);
       }
     });
   }
@@ -92,6 +94,14 @@ export class ProjectsDocumentsComponent implements OnInit {
 
   public openDocument(link) {
     window.open(environment.storage + link);
+  }
+
+  public goBack() {
+    if (this.authS.role() === 'ADMIN') {
+      this.router.navigate(['/auth/projects/show/', { id: this.idProject}]);
+    } else {
+      this.router.navigate(['/auth/projects/show']);
+    }
   }
 
   setPageSizeOptions(setPageSizeOptionsInput: string) {

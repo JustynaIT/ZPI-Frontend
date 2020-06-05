@@ -3,7 +3,8 @@
 /* @import "m-modified.css"; */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #303030;  }
+::ng-deep html { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #303030;  }
+ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #303030;  }
 
  /* Change label color on focused */
  ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {

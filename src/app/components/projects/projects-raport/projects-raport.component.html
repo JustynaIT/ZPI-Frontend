@@ -1,7 +1,7 @@
 <div class="container">
 
     <h2 class="title">
-        <mat-icon class="iconBack" [routerLink]="['/auth/projects/show/', project?.id]">arrow_back_ios</mat-icon>
+        <mat-icon class="iconBack" (click)="goBack()">arrow_back_ios</mat-icon>
 
         {{project?.name}} report
     </h2>

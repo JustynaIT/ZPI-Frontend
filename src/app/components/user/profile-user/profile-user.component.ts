@@ -15,7 +15,6 @@ export class ProfileUserComponent implements OnInit {
     this.authS.getUser().subscribe({
       next: (res: any) => {
         this.user = res.data.item;
-        console.log(this.user);
       }
     });
   }

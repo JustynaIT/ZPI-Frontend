@@ -8,7 +8,7 @@
         <mat-form-field *ngIf="authS.role() !== 'WORKER'" class="col-md-6">
             <mat-label>Employee</mat-label>
             <mat-select formControlName="user_id">
-                <mat-option *ngFor="let user of usersProject" [value]="user.id">{{user.name}}</mat-option>
+                <mat-option *ngFor="let user of usersProject" [value]="user?.id">{{user.name}}</mat-option>
             </mat-select>
             <mat-error *ngIf="this.taskForm.get('user_id').invalid">{{ validators.getErrorMessage('user_id')}}</mat-error>
         </mat-form-field>
@@ -40,6 +40,6 @@
             <mat-label>Description</mat-label>
             <input matInput placeholder="description" formControlName="description" name="description">
             <mat-error *ngIf="this.taskForm.get('description').invalid">{{ validators.getErrorMessage('description')}}</mat-error>
-        </mat-form-field>                                    
+        </mat-form-field>
     </form>
 </div>

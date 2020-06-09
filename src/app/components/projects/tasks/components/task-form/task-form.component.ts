@@ -47,7 +47,9 @@ export class TaskFormComponent implements OnInit {
   }
 
   public setDataForm(task) {
-    task.user_id = task.user.id;
+    if(task.user){
+      task.user_id = task.user.id;
+    }
     this.taskForm.patchValue(task);
   }
 

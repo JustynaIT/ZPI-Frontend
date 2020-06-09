@@ -3,7 +3,7 @@
         <h2 class="subtitle">
             Tasks
             <span *ngIf="authS.role() !== 'WORKER'" class="add-task" (click)="enableAdd()">
-                <mat-icon >add</mat-icon> 
+                <mat-icon >add</mat-icon>
                 add
             </span>
         </h2>
@@ -11,28 +11,28 @@
     <div class="col-md-9 tasks">
         <div class="row text-center">
             <div class="col-6 col-sm-3"
-            matTooltipPosition='above' 
+            matTooltipPosition='above'
             matTooltipShowDelay='1000'
             matTooltip="All tasks">
                 <mat-icon class="icon ">reorder</mat-icon>
                 <span class="text-icon">{{project?.total_tasks}}</span>
             </div>
             <div class="col-6 col-sm-3"
-            matTooltipPosition='above' 
+            matTooltipPosition='above'
             matTooltipShowDelay='1000'
             matTooltip="Done tasks">
                 <mat-icon class="icon ">done</mat-icon>
                 <span>{{project?.done_tasks}}</span>
             </div>
             <div class="col-6 col-sm-3"
-            matTooltipPosition='above' 
+            matTooltipPosition='above'
             matTooltipShowDelay='1000'
-            matTooltip="In progress tasks">            
+            matTooltip="In progress tasks">
                 <mat-icon class="icon ">update</mat-icon>
                 <span>{{project?.in_progress_tasks}}</span>
             </div>
             <div class="col-6 col-sm-3"
-            matTooltipPosition='above' 
+            matTooltipPosition='above'
             matTooltipShowDelay='1000'
             matTooltip="Not assigned tasks">
                 <mat-icon class="icon ">report</mat-icon>
@@ -44,14 +44,14 @@
         <mat-card class="card">
             <mat-card-content>
                 <div class="row">
-                    <span 
-                        class="icon-edit-task"                      
+                    <span
+                        class="icon-edit-task"
                           >
-                        <mat-icon 
+                        <mat-icon
                             (click)="addTask()">
                             done
                         </mat-icon>
-                        <mat-icon 
+                        <mat-icon
                             (click)="cancelAddTask()">
                             close
                         </mat-icon>
@@ -60,9 +60,9 @@
                         NEW
                     </div>
                     <div class="col-md-10">
-                        <app-task-form 
+                        <app-task-form
                             [usersProject]="usersProject"
-                            [projectID]="project?.id">                            
+                            [projectID]="project?.id">
                         </app-task-form>
                     </div>
                 </div>
@@ -73,10 +73,10 @@
         <mat-card class="card">
             <mat-card-content>
                 <div>
-                    <span 
+                    <span
                         class="icon-edit-task"
                         *ngIf="!isEditEnable && !isAddEnable" >
-                        <mat-icon *ngIf="authS.role() !== 'WORKER' || authS.userId() == task.user.id"                               
+                        <mat-icon *ngIf="authS.role() !== 'WORKER' || authS.userId() == task.user?.id"
                             (click)="enableEditing(task.id)">
                             edit
                         </mat-icon>
@@ -85,17 +85,17 @@
                              delete
                         </mat-icon>
                     </span>
-                    <span class="icon-edit-task"                        
+                    <span class="icon-edit-task"
                           *ngIf="task.isEdit"  >
-                        <mat-icon 
+                        <mat-icon
                             (click)="saveTask(task.id)">
                             done
                         </mat-icon>
-                        <mat-icon 
+                        <mat-icon
                             (click)="cancelEditTask(task.id)">
                             close
                         </mat-icon>
-                    </span>                        
+                    </span>
                 </div>
                 <div class="row">
                     <div class="col-md-2 text-center">
@@ -103,32 +103,32 @@
                         <p *ngIf="task.done_at" class="date_done">{{task.done_at}}</p>
                     </div>
                     <div class="col-md-10">
-                        <div *ngIf="!task.isEdit">                                
+                        <div *ngIf="!task.isEdit">
                             <p class="name" [ngStyle]="{'color': setColor(task.priority, task.status)}">{{task.name}}</p>
                             <p >{{task?.user?.name}}</p>
                             <p>{{task?.description}}</p>
                             <p class="date">{{task.expire_date}}</p>
                         </div>
                         <div *ngIf="task.isEdit" class="edit-form">
-                            <app-task-form 
+                            <app-task-form
                               [usersProject]="usersProject"
-                              [projectID]="project?.id">                            
+                              [projectID]="project?.id">
                             </app-task-form>
                         </div>
                     </div>
                 </div>
-                
+
             </mat-card-content>
         </mat-card>
     </div>
     <div *ngIf="tasks?.length === 0" class="no-tasks">
         <p>
             This project has no ticks. Add new tasks.
-        </p>   
+        </p>
     </div>
 
     <div *ngIf="tasks?.length > 0" class=" col-md-12 d-flex flex-row-reverse">
-        <mat-paginator 
+        <mat-paginator
             class="paginator text-right"
             [pageIndex]="paginator.pageIndex"
             [length]="paginator.length"
@@ -137,6 +137,6 @@
             (page)="pageEvent = handlePage($event)">
         </mat-paginator>
     </div>
-    
-    
+
+
 </div>
